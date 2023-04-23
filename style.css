@@ -1,0 +1,61 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.head-section {
+    display: flex;
+}
+
+.menu-section {
+    display: flex;
+}
+
+img {
+    padding: 10px;
+}
+
+#user-data {
+    vertical-align: bottom;
+    text-align: left;
+    font-size: 20px;
+}
+
+button {
+    color: white;
+    background-color: #1090ff;
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    border: none;
+    transition-duration: 0.2s;
+}
+
+button:hover {
+    background-color: #ffb507;
+    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.24),4px 4px 12px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.2s;
+}
+
+button:hover:active {
+    background-color: #d29507;
+    box-shadow: 0 0 0 0,0 0 0 0 ;
+}
+
+.log-out {
+    font-size: 20px;
+    position: absolute;
+    right: 0;
+}
+
+#sort-by {
+    position: absolute;
+    right: 0;
+}
