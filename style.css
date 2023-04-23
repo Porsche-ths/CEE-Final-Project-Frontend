@@ -7,15 +7,20 @@ body {
 }
 
 .head-section {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
 }
 
 .menu-section {
     display: flex;
+    align-items: center;
 }
 
 img {
+    border: none;
     padding: 10px;
+    height: auto;
+    vertical-align: bottom;
 }
 
 #user-data {
@@ -28,7 +33,7 @@ button {
     color: white;
     background-color: #1090ff;
     font-family: 'Kanit', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 10px;
@@ -52,6 +57,7 @@ button:hover:active {
 .log-out {
     font-size: 20px;
     position: absolute;
+    margin: 10px;
     right: 0;
 }
 
