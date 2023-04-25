@@ -13,24 +13,60 @@
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
             <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
             <span id="user-data">653xxxxx21 ชื่อ - สกุล<br>Firstname - Lastname</span>
-            <button class="log-out">Log out</button>
+            <button class="log-out" onclick="login()">Log out</button>
         </div>
 
         <div class="body-section">
-            <div class="menu-section">
-                <h1>Assignments & Submission
-                <img id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
-                <button id="semester">Semester</button>
-                <img id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
-                <button id="submission">Submission</button>
-                <span id="sort-by">
-                    <button id="log-out">Sort by</button>
-                    <img id="sort-by-icon" src="https://cdn.icon-icons.com/icons2/3629/PNG/512/sorting_left_icon_227394.png" width="35px">
-                </span>
+
+            <!-- Log in pop up -->
+            <div class="popup" id="log-in">
+                <form class="popup-container">
+                    <h1>Login</h1>
+
+                    <label for="stid"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Student ID" name="stid" required>
+
+                    <label for="pswd"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="pswd" required>
+
+                    <button type="submit" class="btn" onclick="loggedin()">Login</button>
+                    <button type="button" class="btn cancel" onclick="loggedin()">Close</button>
+                </form>
             </div>
-    
-            <div class="data-table">
-                <table>
+            <!-- Log in pop up -->
+
+            <!-- Log in pop up -->
+            <!-- <div class="popup" id="semester">
+                <form class="popup-container">
+                    <h1>Login</h1>
+
+                    <label for="stid"><b>Email</b></label>
+                    <input type="radio" id="semester" name="stid" required>
+
+                    <label for="pswd"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="pswd" required>
+
+                    <button type="submit" class="btn" onclick="loggedin()">Login</button>
+                    <button type="button" class="btn cancel" onclick="loggedin()">Close</button>
+                </form>
+            </div> -->
+            <!-- Log in pop up -->
+
+            <!-- Menu Bar -->
+            <div class="menu-section">
+                <h1>Assignments & Submission</h1>
+                <img class="menu-items" id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
+                <button class="menu-items" id="semester">Semester</button>
+                <img class="menu-items" id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
+                <button class="menu-items" id="submission">Submission</button>
+                <button id="log-out">Sort by</button>
+                <img id="sort-by-icon" src="https://cdn.icon-icons.com/icons2/3629/PNG/512/sorting_left_icon_227394.png" width="35px">
+            </div>
+            <!-- Menu Bar -->
+
+            <!-- Assignment Table -->
+            <div>
+                <table id="assignments-table">
                     <tr>
                         <th>Assignment</th>
                         <th>Subject</th>
@@ -39,10 +75,47 @@
                         <th>Submission</th>
                     </tr>
                     <tr>
-                        
+                        <td>Assignment</td>
+                        <td>Subject</td>
+                        <td>Out Date</td>
+                        <td>Due Date</td>
+                        <td>Submission</td>
+                    </tr>
+                    <tr>
+                        <td>Assignment</td>
+                        <td>Subject</td>
+                        <td>Out Date</td>
+                        <td>Due Date</td>
+                        <td>Submission</td>
+                    </tr>
+                    <tr>
+                        <td>Assignment</td>
+                        <td>Subject</td>
+                        <td>Out Date</td>
+                        <td>Due Date</td>
+                        <td>Submission</td>
+                    </tr>
+                    <tr>
+                        <td>Assignment</td>
+                        <td>Subject</td>
+                        <td>Out Date</td>
+                        <td>Due Date</td>
+                        <td>Submission</td>
                     </tr>
                 </table>
             </div>
+            <!-- Assignment Table -->
         </div>
+
+        <script>
+            function login() {
+                document.getElementById("log-in").style.display = "block";
+            }
+
+            function loggedin() {
+                document.getElementById("log-in").style.display = "none";
+            }
+        </script>
+
     </body>
 </html>

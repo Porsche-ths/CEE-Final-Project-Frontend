@@ -6,16 +6,6 @@ body {
     margin-right: 20px;
 }
 
-.head-section {
-    display: inline-flex;
-    align-items: center;
-}
-
-.menu-section {
-    display: flex;
-    align-items: center;
-}
-
 img {
     border: none;
     padding: 10px;
@@ -23,45 +13,130 @@ img {
     vertical-align: bottom;
 }
 
-#user-data {
-    vertical-align: bottom;
-    text-align: left;
-    font-size: 20px;
-}
-
 button {
+    height: fit-content;
     color: white;
-    background-color: #1090ff;
+    background-color: #5CB1FF;
     font-family: 'Kanit', sans-serif;
     font-size: 18px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     border-radius: 8px;
     border: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    opacity: 0.8;
     transition-duration: 0.2s;
 }
 
 button:hover {
-    background-color: #ffb507;
+    opacity: 1;
+    cursor: pointer;
     box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.24),4px 4px 12px 0 rgba(0,0,0,0.19);
     transition-duration: 0.2s;
 }
 
 button:hover:active {
-    background-color: #d29507;
+    background-color: #FF9E45;
     box-shadow: 0 0 0 0,0 0 0 0 ;
+}
+
+tr:nth-child(even) { background-color: #f2f2f2; }
+
+tr:hover { background-color: #ddd; }
+
+th, td {
+    position: flex;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #5CB1FF;
+    font-size: 20px;
+    color:white;
+}
+
+.head-section {
+    display: flex;
+    width: 100%;
+}
+
+.menu-section {
+    display: flex;
+    align-items: center;
+}
+
+.menu-items {
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .log-out {
     font-size: 20px;
-    position: absolute;
-    margin: 10px;
-    right: 0;
 }
 
-#sort-by {
-    position: absolute;
-    right: 0;
+.popup {
+    display: none;
+    position: fixed;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+.popup-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+.popup-container input[type=text], .popup-container input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    border-radius: 4px;
+    background: #f1f1f1;
+}
+
+.popup-container input[type=text]:focus, .popup-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.popup-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+}
+
+.popup-container .cancel {
+    background-color: red;
+}
+
+.popup-container .btn:hover {
+    opacity: 1;
+}
+
+#user-data {
+    font-size: 20px;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#filter-icon {
+    padding-right: 0;
+}
+
+#submission {
+    margin-right: auto;
+}
+
+#assignments-table {
+    border-collapse: collapse;
+    width: 100%;
 }
