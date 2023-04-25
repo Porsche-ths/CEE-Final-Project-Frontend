@@ -78,8 +78,11 @@ th {
 .popup {
     display: none;
     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 3px solid #f1f1f1;
-    z-index: 9;
+    z-index: 10;
 }
 
 .popup-container {
@@ -91,7 +94,7 @@ th {
 .popup-container input[type=text], .popup-container input[type=password] {
     width: 90%;
     padding: 15px;
-    margin: 5px 0 22px 0;
+    margin: 5px 0px 22px 0px;
     border: none;
     border-radius: 4px;
     background: #f1f1f1;
@@ -134,6 +137,20 @@ th {
 
 #submission {
     margin-right: auto;
+}
+
+#sort-by-icon:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#sort-by-icon:hover:active {
+    border-radius: 8px;
+    background-color: #ddd;
+}
+
+#log-in-label {
+    text-align: center;
 }
 
 #assignments-table {
