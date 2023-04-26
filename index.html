@@ -45,15 +45,15 @@
             <div class="modal" id="semester-modal">
                 <form class="modal-container">
                     <h1>Semester</h1>
-                    <button type="submit" class="semester option" id="semester2022-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/2</button>
-                    <button type="submit" class="semester option" id="semester2022-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/1</button>
-                    <button type="submit" class="semester option" id="semester2021-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/2</button>
-                    <button type="submit" class="semester option" id="semester2021-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/1</button>
+                    <button type="submit" class="option semester" id="semester2022-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/2</button>
+                    <button type="submit" class="option semester" id="semester2022-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/1</button>
+                    <button type="submit" class="option semester" id="semester2021-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/2</button>
+                    <button type="submit" class="option semester" id="semester2021-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/1</button>
                     <br>
-                    <button type="submit" class="semester option" id="semester2020-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2020/2</button>
-                    <button type="submit" class="semester option" id="semester2020-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2020/1</button>
-                    <button type="submit" class="semester option" id="semester2019-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/2</button>
-                    <button type="submit" class="semester option" id="semester2019-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/1</button>
+                    <button type="submit" class="option semester" id="semester2020-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2020/2</button>
+                    <button type="submit" class="option semester" id="semester2020-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2020/1</button>
+                    <button type="submit" class="option semester" id="semester2019-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/2</button>
+                    <button type="submit" class="option semester" id="semester2019-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/1</button>
                     <div class="confirm-section">
                         <button class="cancel" onclick="document.getElementById('semester-modal').style.display = 'none'">Close</button>
                     </div>
@@ -61,18 +61,18 @@
             </div>
             <!-- Semester Modal -->
 
-            <!-- Semester Modal -->
+            <!-- Sort By Modal -->
             <div class="modal" id="sort-by-modal">
                 <form class="modal-container">
                     <h1>Sort by</h1>
-                    <button type="submit" class="sort-by option" id="sort-by-name" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Name</button>
-                    <button type="submit" class="sort-by option" id="sort-by-due-date" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Due Date</button>
+                    <button type="submit" class="option sort-by" id="sort-by-name" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Name</button>
+                    <button type="submit" class="option sort-by" id="sort-by-due-date" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Due Date</button>
                     <div class="confirm-section">
                         <button class="cancel" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Close</button>
                     </div>
                 </form>
             </div>
-            <!-- Semester Modal -->
+            <!-- Sort By Modal -->
 
             <!-- Menu Bar -->
             <div class="menu-section">
@@ -89,7 +89,7 @@
             <!-- Assignment Table -->
             <div>
                 <table id="assignments-table">
-                    <tr>
+                    <tr class="table-head">
                         <th class="check-col">Checked</th>
                         <th class="assignment-col">Assignment</th>
                         <th class="subject-col">Subject</th>
@@ -103,7 +103,7 @@
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td>Note</td>
+                        <td><input type="text"></td>
                     </tr>
                     <tr>
                         <td class="check-col"><input type="checkbox" id="assignment-done"></td>
@@ -111,7 +111,7 @@
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td>Note</td>
+                        <td><input type="text"></td>
                     </tr>
                     <tr>
                         <td class="check-col"><input type="checkbox" id="assignment-done"></td>
@@ -119,7 +119,7 @@
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td>Note</td>
+                        <td><input type="text"></td>
                     </tr>
                     <tr>
                         <td class="check-col"><input type="checkbox" id="assignment-done"></td>
@@ -127,7 +127,7 @@
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td>Note</td>
+                        <td><input type="text"></td>
                     </tr>
                 </table>
             </div>
