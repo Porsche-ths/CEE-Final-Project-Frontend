@@ -62,6 +62,50 @@ th {
     color:white;
 }
 
+label {
+    position: relative;
+    cursor: pointer;
+}
+
+label input {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+}
+
+label span {
+    position: absolute;
+    top: 0;
+    Left: -12px;
+    width: 200%;
+    height: 100%;
+    background-color: red;
+    border-radius: 80px;
+    transition: 0.5s;
+}
+
+label input:checked ~ span { background-color: #0BDA51; }
+
+label span i {
+    position: absolute;
+    top: 3.5px;
+    Left: 3px;
+    width: 17px;
+    height: 17px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+label input:checked ~ span i {
+    Left: 20px
+}
+
+textarea {
+    width: 99%;
+    resize: none;
+}
+
 .head-section {
     display: flex;
     width: 100%;
