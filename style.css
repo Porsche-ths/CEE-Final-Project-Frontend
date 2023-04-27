@@ -65,6 +65,8 @@ th {
 label {
     position: relative;
     cursor: pointer;
+    width: 60px;
+    height: fit-content;
 }
 
 label input {
@@ -199,6 +201,10 @@ textarea {
     text-align: center;
 }
 
+.confirm-section .cancel {
+    margin-left: 10px;
+}
+
 .option {
     margin: 10px;
     width: 80px;
@@ -209,6 +215,13 @@ textarea {
 .sort-by { width: 100px; }
 
 .option:hover:active { background-color: #07559C; }
+
+.subject {
+    margin-left: 23px;
+    background: none;
+}
+
+.subject:hover:active { background: none; }
 
 .check-col, .date-col, .time-col { max-width: 30px; }
 
@@ -242,6 +255,11 @@ textarea {
     background-color: white;
 }
 
+.subject-check {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .confirm-button-container {
     padding-top: 10px;
     text-align: right;
@@ -273,6 +291,10 @@ textarea {
 #sort-by-icon:hover:active {
     border-radius: 8px;
     background-color: #ddd;
+}
+
+#subject-modal-info {
+    text-align: left;
 }
 
 #assignments-table {

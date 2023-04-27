@@ -1,20 +1,17 @@
-function login() {
-    document.getElementById(`log-in`).style.display = 'block';
-}
+function openModal(idName) { document.getElementById(`${idName}`).style.display = 'block'; }
 
-function cancelLogin() {
-    document.getElementById(`log-in`).style.display = 'none';
-}
+function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
 
 function selectSubjectFromSemester(year, semester) {
     // if (getCourses(year, semester).isEmpty()) toggle error modal
-    cancelSemester();
+    closeModal(`semester-modal`);
+    openModal(`subject-modal`);
 }
 
-function cancelSemester() {
-    document.getElementById('semester-modal').style.display = 'none';
+function confirmSubjects() {
+    closeModal(`subject-modal`)
 }
 
 function sortBy(criteria) {
-    document.getElementById(`sort-by-modal`).style.display = 'none';
+    closeModal(`sort-by-modal`);
 }
