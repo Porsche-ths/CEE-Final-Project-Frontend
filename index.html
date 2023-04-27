@@ -15,7 +15,7 @@
         <div class="head-section">
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
             <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
-            <span id="user-data">653xxxxx21 ชื่อ - สกุล<br>Firstname - Lastname</span>
+            <span id="user-data">653XXXXX21 ชื่อ - สกุล<br>Firstname - Lastname</span>
             <button class="log-out" onclick="openModal('log-in-popup')">Log out</button>
         </div>
 
@@ -92,13 +92,27 @@
             </div>
             <!-- Sort By Modal -->
 
+            <!-- Error Modal -->
+            <div class="modal" id="error-modal">
+                <div class="modal-container">
+                    <h1>Error</h1>
+                    <p>
+                        No course in the selected Semester
+                    </p>
+                    <div class="confirm-section">
+                        <button class="cancel" onclick="closeModal('error-modal')">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Error Modal -->
+
             <!-- Menu Bar -->
             <div class="menu-section">
                 <h1>ASSIGNMENTS & SUBMISSION</h1>
                 <img class="menu-items" id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
                 <button class="menu-items" id="semester-button" onclick="openModal('semester-modal')">SEMESTER</button>
                 <button id="log-out" onclick="openModal('sort-by-modal')">SORT BY</button>
-                <img class="menu-items" id="sort-by-icon" src="https://cdn.icon-icons.com/icons2/3629/PNG/512/sorting_left_icon_227394.png" width="35px">
+                <img class="menu-items" id="sort-by-icon" src="https://cdn.icon-icons.com/icons2/3629/PNG/512/sorting_left_icon_227394.png" width="35px" onclick="toggleSort()">
             </div>
             <!-- Menu Bar -->
 
@@ -106,7 +120,7 @@
             <div>
                 <table id="assignments-table">
                     <tr class="table-head">
-                        <th class="check-col">Checked</th>
+                        <th class="check-col">Done</th>
                         <th class="assignment-col">Assignment</th>
                         <th class="subject-col">Subject</th>
                         <th class="date-col">Due Date</th>

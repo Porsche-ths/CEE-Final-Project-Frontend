@@ -15,3 +15,7 @@ function confirmSubjects() {
 function sortBy(criteria) {
     closeModal(`sort-by-modal`);
 }
+
+function toggleSort() {
+    openModal(`error-modal`);
+}
