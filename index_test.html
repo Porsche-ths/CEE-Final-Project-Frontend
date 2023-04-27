@@ -7,8 +7,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-        <script src="script_item.js" defer></script>
-        <script src="script_cv.js" defer></script>
+        <script>
+            function del() {
+                let e = document.getElementById("semester2022-2");
+                e.remove();
+            }
+        </script>
     </head>
     <body onload=getUserInfo();>
         <div class="head-section">
@@ -44,7 +48,7 @@
             <div class="modal" id="semester-modal">
                 <form class="modal-container">
                     <h1>Semester</h1>
-                    <button type="submit" class="option semester" id="semester2022-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/2</button>
+                    <button type="submit" class="option semester" id="semester2022-2" onclick=del()>2022/2</button>
                     <button type="submit" class="option semester" id="semester2022-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/1</button>
                     <button type="submit" class="option semester" id="semester2021-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/2</button>
                     <button type="submit" class="option semester" id="semester2021-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/1</button>

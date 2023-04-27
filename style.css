@@ -1,9 +1,9 @@
 body {
     font-family: 'Kanit', sans-serif;
     position: relative;
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 img {
@@ -82,16 +82,22 @@ th {
 .popup {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-    border: 3px solid #f1f1f1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
     z-index: 3;
 }
 
 .popup-container {
     max-width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    border: 3px solid #f1f1f1;
     padding: 10px;
     background-color: white;
 }
@@ -135,6 +141,7 @@ th {
 
 .cancel:hover {
     box-shadow: none;
+    cursor: pointer;
     opacity: 1;
 }
 
@@ -155,7 +162,7 @@ th {
     text-align: center;
 }
 
-.sort-by { width: auto; }
+.sort-by { width: 100px; }
 
 .option:hover:active { background-color: #07559C; }
 
@@ -170,18 +177,35 @@ th {
 .modal {
     display: none;
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 3;
+}
+
+.modal-container {
+    position: fixed;
+    max-width: 750px;
+    text-align: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     border: 3px solid #f1f1f1;
-    z-index: 3;
-}
-
-.modal-container {
-    max-width: 750px;
     padding: 10px;
     background-color: white;
+}
+
+.confirm-button-container {
+    padding-top: 10px;
+    text-align: right;
+}
+
+.confirm-button {
+    width: 80px;
+    margin-left: 10px;
 }
 
 #user-data {
@@ -193,7 +217,7 @@ th {
 
 #filter-icon { padding-right: 0; }
 
-#submission-button { margin-right: auto; }
+#semester-button { margin-right: auto; }
 
 #sort-by-icon:hover {
     opacity: 0.5;
@@ -208,4 +232,16 @@ th {
 #assignments-table {
     border-collapse: collapse;
     width: 100%;
+}
+
+#confirm-changes-section {
+    display: block; /* none */
+}
+
+#cancel-changes {
+    background-color: red;
+}
+
+#cancel-changes:hover:active {
+    background-color: #FF9E45;
 }
