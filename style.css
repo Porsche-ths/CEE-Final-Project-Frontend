@@ -263,6 +263,8 @@ textarea {
 
 #semester-button { margin-right: auto; }
 
+#sort-by-icon { padding-left: 0px; }
+
 #sort-by-icon:hover {
     opacity: 0.5;
     cursor: pointer;
