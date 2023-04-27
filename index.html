@@ -17,13 +17,10 @@
         </div>
 
         <div class="body-section">
-
-            <div class="bgmodal">
-
-            </div>
-
+            
             <!-- Log in pop up -->
             <div class="popup" id="log-in">
+                
                 <form class="popup-container">
                     <h1>Login</h1>
 
@@ -35,7 +32,7 @@
 
                     <div class="confirm-section">
                         <button type="submit" class="btn">Login</button>
-                        <button class="cancel" onclick="document.getElementById('log-in').style.display = 'none'">Close</button>
+                        <button class="cancel" onclick="document.getElementById('log-in').style.display = 'none'">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -55,7 +52,7 @@
                     <button type="submit" class="option semester" id="semester2019-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/2</button>
                     <button type="submit" class="option semester" id="semester2019-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/1</button>
                     <div class="confirm-section">
-                        <button class="cancel" onclick="document.getElementById('semester-modal').style.display = 'none'">Close</button>
+                        <button class="cancel" onclick="document.getElementById('semester-modal').style.display = 'none'">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -68,7 +65,7 @@
                     <button type="submit" class="option sort-by" id="sort-by-name" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Name</button>
                     <button type="submit" class="option sort-by" id="sort-by-due-date" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Due Date</button>
                     <div class="confirm-section">
-                        <button class="cancel" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Close</button>
+                        <button class="cancel" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -79,8 +76,6 @@
                 <h1>ASSINGMENTS & SUBMISSION</h1>
                 <img class="menu-items" id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
                 <button class="menu-items" id="semester-button" onclick="document.getElementById('semester-modal').style.display = 'block'">SEMESTER</button>
-                <img class="menu-items" id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
-                <button class="menu-items" id="submission-button">SUBMISSION</button>
                 <button id="log-out" onclick="document.getElementById('sort-by-modal').style.display = 'block'">SORT BY</button>
                 <img class="menu-items" id="sort-by-icon" src="https://cdn.icon-icons.com/icons2/3629/PNG/512/sorting_left_icon_227394.png" width="35px">
             </div>
@@ -130,6 +125,12 @@
                         <td><input type="text"></td>
                     </tr>
                 </table>
+
+                <div class="confirm-button-container" id="confirm-changes-section">
+                    <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                    <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                </div>
+                
             </div>
             <!-- Assignment Table -->
         </div>
