@@ -1,4 +1,7 @@
-function openModal(idName) { document.getElementById(`${idName}`).style.display = 'block'; }
+function openModal(idName) {
+    document.getElementById(`${idName}`).style.display = 'block';
+    if (idName === 'log-in-popup') document.getElementById(`student-id`).focus();
+}
 
 function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
 
