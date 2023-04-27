@@ -1,9 +1,9 @@
 body {
     font-family: 'Kanit', sans-serif;
     position: relative;
-    margin-top: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 img {
@@ -93,6 +93,7 @@ th {
 .popup-container {
     max-width: 300px;
     padding: 10px;
+    border-radius: 10px;
     background-color: white;
 }
 
@@ -155,7 +156,7 @@ th {
     text-align: center;
 }
 
-.sort-by { width: auto; }
+.sort-by { width: 100px; }
 
 .option:hover:active { background-color: #07559C; }
 
@@ -180,8 +181,20 @@ th {
 
 .modal-container {
     max-width: 750px;
+    text-align: center;
     padding: 10px;
+    border-radius: 10px;
     background-color: white;
+}
+
+.confirm-button-container {
+    padding-top: 10px;
+    text-align: right;
+}
+
+.confirm-button {
+    width: 80px;
+    margin-left: 10px;
 }
 
 #user-data {
@@ -193,7 +206,7 @@ th {
 
 #filter-icon { padding-right: 0; }
 
-#submission-button { margin-right: auto; }
+#semester-button { margin-right: auto; }
 
 #sort-by-icon:hover {
     opacity: 0.5;
@@ -208,4 +221,16 @@ th {
 #assignments-table {
     border-collapse: collapse;
     width: 100%;
+}
+
+#confirm-changes-section {
+    display: block; /* none */
+}
+
+#cancel-changes {
+    background-color: red;
+}
+
+#cancel-changes:hover:active {
+    background-color: #FF9E45;
 }
