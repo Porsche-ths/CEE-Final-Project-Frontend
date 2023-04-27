@@ -22,8 +22,8 @@ const getItemsFromDB = async () => {
 
 // TODO #2.4: Show items in table (Sort itemsData variable based on created_date in ascending order)
 const showItemsInTable = (itemsData) => {
-  const table_body = document.getElementById("main-table-body");
-  table_body.innerHTML = "";
+  const assignmentsTable = document.getElementById("assignments-table");
+  assignmentsTable.innerHTML = "";
   // ----------------- FILL IN YOUR CODE UNDER THIS AREA ONLY ----------------- //
   itemsData.sort((a,b) => (a.created_date > b.created_date) ? 1 : ((b.created_date > a.created_date) ? -1 : 0))
   // ----------------- FILL IN YOUR CODE ABOVE THIS AREA ONLY ----------------- //
@@ -43,9 +43,8 @@ const showItemsInTable = (itemsData) => {
 
 // TODO #2.5: Send Add an item ("POST") request to backend server and update items in the table
 const addItem = async () => {
-  const item = document.getElementById("item-to-add").value;
-  const name = document.getElementById("name-to-add").value;
-  const price = document.getElementById("price-to-add").value;
+  const checked = document.getElementById("assignment-done").value;
+  const note = document.getElementById("text-col").value;
 
   const itemToAdd = {
     item: item,

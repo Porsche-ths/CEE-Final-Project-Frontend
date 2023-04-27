@@ -7,14 +7,10 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-        <script>
-            function del() {
-                let e = document.getElementById("semester2022-2");
-                e.remove();
-            }
-        </script>
+        <script src="script_item.js" defer></script>
+        <script src="script_cv.js" defer></script>
     </head>
-    <body onload=getUserInfo();>
+    <body>
         <div class="head-section">
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
             <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
@@ -48,7 +44,7 @@
             <div class="modal" id="semester-modal">
                 <form class="modal-container">
                     <h1>Semester</h1>
-                    <button type="submit" class="option semester" id="semester2022-2" onclick=del()>2022/2</button>
+                    <button type="submit" class="option semester" id="semester2022-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/2</button>
                     <button type="submit" class="option semester" id="semester2022-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/1</button>
                     <button type="submit" class="option semester" id="semester2021-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/2</button>
                     <button type="submit" class="option semester" id="semester2021-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/1</button>
@@ -99,36 +95,36 @@
                         <th>Note</th>
                     </tr>
                     <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
                         <td class="assignment-col">Assignment</td>
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
+                        <td><textarea></textarea></td>
                     </tr>
                     <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
                         <td class="assignment-col">Assignment</td>
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
+                        <td><textarea></textarea></td>
                     </tr>
                     <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
                         <td class="assignment-col">Assignment</td>
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
+                        <td><textarea></textarea></td>
                     </tr>
                     <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
                         <td class="assignment-col">Assignment</td>
                         <td class="subject-col">Subject</td>
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
+                        <td><textarea></textarea></td>
                     </tr>
                 </table>
 
@@ -140,6 +136,9 @@
             </div>
             <!-- Assignment Table -->
         </div>
+        <section class="section-center">
+            <button class="button change-page-button" onclick="window.location.href='login.html'">Go to MyCourseville API Login Page</button>
+        </section>
 
     </body>
 </html>

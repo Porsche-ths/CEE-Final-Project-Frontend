@@ -36,11 +36,23 @@ const getSubjects_n_Semesters = async () => {
         .then((response) => response.json())
         .then((data) => data.data.student)
         .then((courses) => {
+            console.log("123546414519515156156156")
             let years_provided = new Set();
             for (let i = 0; i < courses.length; i++) {
+                var currentDate = new Date(Date.now());
                 let year = courses[i].year, semester = courses[i].semester;
                 years_provided.add((year, semester));
                 let cid = courses[i].cv_cid, course_no = courses[i].course_no, title = courses[i].title, course_icon = courses[i].course_icon;
+                document.getElementById("assignments-table").innerHTML += `
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">${course_no}</td>
+                        <td class="subject-col">${title}</td>
+                        <td class="date-col">${currentDate.toLocaleDateString()}</td>
+                        <td class="time-col">${currentDate.toLocaleTimeString()}</td>
+                        <td><textarea></textarea></td>
+                    </tr>
+                `
                 // some functions to insert them to desired position -> status on hold
             }
             for (let y = 2022; y >= 2019; y--) {
@@ -86,5 +98,3 @@ const createDefaultTable = async () => {
 const logout = async () => {
   window.location.href = `http://${backendIPAddress}/courseville/logout`;
 };
-
-document.getElementById("group-id").innerHTML = getGroupNumber();

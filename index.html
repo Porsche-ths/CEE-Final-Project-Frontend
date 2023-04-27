@@ -7,15 +7,15 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-        <script src="script_item.js" defer></script>
-        <script src="script_cv.js" defer></script>
+        <!--<script src="script_item.js" defer></script>-->
+        <script src="script_mcv.js" defer></script>
     </head>
     <body onload=getUserInfo();>
         <div class="head-section">
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
             <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
             <span id="user-data">653xxxxx21 ชื่อ - สกุล<br>Firstname - Lastname</span>
-            <button class="log-out" onclick="document.getElementById('log-in').style.display = 'block'">Log out</button>
+            <button class="log-out" onclick=logout()>Log out</button>
         </div>
 
         <div class="body-section">
@@ -93,49 +93,20 @@
                         <th class="date-col">Due Date</th>
                         <th class="time-col">Due Time</th>
                         <th>Note</th>
-                    </tr>
-                    <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
-                        <td class="assignment-col">Assignment</td>
-                        <td class="subject-col">Subject</td>
-                        <td class="date-col">Due Date</td>
-                        <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
-                        <td class="assignment-col">Assignment</td>
-                        <td class="subject-col">Subject</td>
-                        <td class="date-col">Due Date</td>
-                        <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
-                        <td class="assignment-col">Assignment</td>
-                        <td class="subject-col">Subject</td>
-                        <td class="date-col">Due Date</td>
-                        <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td class="check-col"><input type="checkbox" id="assignment-done"></td>
-                        <td class="assignment-col">Assignment</td>
-                        <td class="subject-col">Subject</td>
-                        <td class="date-col">Due Date</td>
-                        <td class="time-col">Due Time</td>
-                        <td><input type="text"></td>
-                    </tr>
+                    </tr> 
                 </table>
 
                 <div class="confirm-button-container" id="confirm-changes-section">
-                    <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                    <button type="submit" class="confirm-button" id="save-changes" onclick=getSubjects_n_Semesters()>Save</button>
                     <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
                 </div>
                 
             </div>
             <!-- Assignment Table -->
         </div>
+        <section class="section-center">
+            <button class="button change-page-button" onclick="window.location.href='login.html'">Go to MyCourseville API Login Page</button>
+        </section>
 
     </body>
 </html>
