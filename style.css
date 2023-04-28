@@ -65,6 +65,8 @@ th {
 label {
     position: relative;
     cursor: pointer;
+    width: 60px;
+    height: fit-content;
 }
 
 label input {
@@ -130,7 +132,7 @@ textarea {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(255, 255, 255, 1);
     z-index: 3;
 }
 
@@ -141,7 +143,7 @@ textarea {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    border: 3px solid #f1f1f1;
+    border: 3px solid #d6d6d6;
     padding: 10px;
     background-color: white;
 }
@@ -153,6 +155,7 @@ textarea {
     border: none;
     border-radius: 4px;
     background: #f1f1f1;
+    transition: 0.7s;
 }
 
 .popup-container input[type=text]:focus, .popup-container input[type=password]:focus {
@@ -210,6 +213,13 @@ textarea {
 
 .option:hover:active { background-color: #07559C; }
 
+.subject {
+    margin-left: 23px;
+    background: none;
+}
+
+.subject:hover:active { background: none; }
+
 .check-col, .date-col, .time-col { max-width: 30px; }
 
 .check-col { text-align: center; }
@@ -242,6 +252,11 @@ textarea {
     background-color: white;
 }
 
+.subject-check {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .confirm-button-container {
     padding-top: 10px;
     text-align: right;
@@ -263,6 +278,8 @@ textarea {
 
 #semester-button { margin-right: auto; }
 
+#sort-by-icon { padding-left: 0px; }
+
 #sort-by-icon:hover {
     opacity: 0.5;
     cursor: pointer;
@@ -271,6 +288,10 @@ textarea {
 #sort-by-icon:hover:active {
     border-radius: 8px;
     background-color: #ddd;
+}
+
+#subject-modal-info {
+    text-align: left;
 }
 
 #assignments-table {

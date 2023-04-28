@@ -1,3 +1,31 @@
+
+function openModal(idName) {
+  document.getElementById(`${idName}`).style.display = 'block';
+  if (idName === 'log-in-popup') document.getElementById(`student-id`).focus();
+}
+
+function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
+
+
+function selectSubjectFromSemester(year, semester) {
+  //if (getCourses(year, semester).isEmpty()) /*toggle error modal*/
+  closeModal(`semester-modal`);
+  getSubjectsFromSemester(year, semester);
+  openModal(`subject-modal`);
+}
+
+function confirmSubjects() {
+  closeModal(`subject-modal`)
+  loopCreateTable();
+}
+
+function sortBy(criteria) {
+  closeModal(`sort-by-modal`);
+}
+
+function toggleSort() {
+  openModal(`error-modal`);
+}
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
 const backendIPAddress = "127.0.0.1:3000";
 
@@ -26,8 +54,14 @@ const getUserInfo = async () => {
     .catch((error) => console.error(error));
 };
 
+let subjects = new Array;
+let ids = new Array;
+
 // get number of semesters & subjects in each semester + show the button according to provided semesters in "semester-modal" (loaded upon login)
-const getSubjects_n_Semesters = async () => {
+const getSubjectsFromSemester = async (year, semester) => {
+    subjects = [];
+    ids = [];
+    document.getElementById("subject-modal-info").innerHTML = "";
     const options = {
         method: "GET",
         credentials: "include",
@@ -36,60 +70,67 @@ const getSubjects_n_Semesters = async () => {
         .then((response) => response.json())
         .then((data) => data.data.student)
         .then((courses) => {
-            console.log("123546414519515156156156")
-            let years_provided = new Set();
             for (let i = 0; i < courses.length; i++) {
-                var currentDate = new Date(Date.now());
-                let year = courses[i].year, semester = courses[i].semester;
-                years_provided.add((year, semester));
-                let cid = courses[i].cv_cid, course_no = courses[i].course_no, title = courses[i].title, course_icon = courses[i].course_icon;
-                document.getElementById("assignments-table").innerHTML += `
-                    <tr>
-                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
-                        <td class="assignment-col">${course_no}</td>
-                        <td class="subject-col">${title}</td>
-                        <td class="date-col">${currentDate.toLocaleDateString()}</td>
-                        <td class="time-col">${currentDate.toLocaleTimeString()}</td>
-                        <td><textarea></textarea></td>
-                    </tr>
-                `
-                // some functions to insert them to desired position -> status on hold
-            }
-            for (let y = 2022; y >= 2019; y--) {
-                for (let s = 1; s <= 2; s++) {
-                    //if (!years_provided.has((y, s))) {document.getElementById(`semester${y}-${s}`).remove();}
+                if (courses[i].year == year && courses[i].semester == semester) {
+                    console.log(courses[i].title);
+                    subjects.push(courses[i].title);
+                    ids.push(courses[i].cv_cid);
+                    document.getElementById("subject-modal-info").innerHTML += `
+                        <label><input type="checkbox" id="${courses[i].cv_cid}"><span class="subject-check"><i></i></span></label><span class="option subject" id=${courses[i].cv_cid}>${courses[i].title}</span><br>
+                    `
                 }
             }
         })
         .catch((error) => console.error(error));
 }
 
+const loopCreateTable = async () => {
+  console.log("I'm in");
+  document.getElementById("assignments-table").innerHTML = `
+      <tr class="table-head">
+          <th class="check-col">Done</th>
+          <th class="assignment-col">Assignment</th>
+          <th class="subject-col">Subject</th>
+          <th class="date-col">Due Date</th>
+          <th class="time-col">Due Time</th>
+          <th>Note</th>
+      </tr>`;
+    for (let i = 0; i < subjects.length; i++) {
+        let isChecked = document.getElementById(`${ids[i]}`).checked;
+        if (isChecked) {
+          console.log("round " + i);
+          createAssignmentsTable(subjects[i], ids[i]);
+        }
+    }
+}
+
 // show all assignments in semester 2022/2 (default) on load
-const createDefaultTable = async () => {
-  const assignmentsTable = document.getElementById("assignments-table");
-  assignmentsTable.innerHTML = "";
-  cons
-  const cv_cid = document.getElementById("ces-cid-value").innerHTML;
-  
+const createAssignmentsTable = async (subject, cv_cid) => {
   const options = {
     method: "GET",
     credentials: "include",
   };
 
-  await fetch(`http://${backendIPAddress}/courseville/get_course_assignments/${cv_cid}`, options)
-    .then((response) => response.json())
-    .then((data) => data.data)
-    .then((assignments) => {
-      assignments.map((item) => {
-        table_body.innerHTML += `
-          <tr id=${item.itemid}>
-            <td>${item.itemid}</td>
-            <td>${item.title}</td>
-          </tr>
-          `;
+    await fetch(`http://${backendIPAddress}/courseville/get_course_assignments/${cv_cid}`, options)
+      .then((response) => response.json())
+      .then((data) => data.data)
+      .then((assignments) => {
+          assignments.map((items) => {
+              let epoch = items.duetime;
+              let currentDate = new Date(epoch*1000); 
+              document.getElementById("assignments-table").innerHTML += `
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">${items.title}</td>
+                        <td class="subject-col">${subject}</td>
+                        <td class="date-col">${currentDate.toLocaleDateString()}</td>
+                        <td class="time-col">${currentDate.toLocaleTimeString()}</td>
+                        <td><textarea></textarea></td>
+                    </tr>
+                    `;
+          })
       })
-    })
-    .catch((error) => console.error(error));
+      .catch((error) => console.error(error));
   /*console.log(
     "This function should fetch 'get course assignments' route from backend server and show assignments in the table."
   );*/

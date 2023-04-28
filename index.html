@@ -7,34 +7,33 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-        <!--<script src="script_item.js" defer></script>-->
+        <script src="script_index.js" defer></script>
+        <script src="script_item.js" defer></script>
         <script src="script_mcv.js" defer></script>
     </head>
-    <body onload=getUserInfo();>
+    <body onload=getUserInfo()>
         <div class="head-section">
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
             <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
-            <span id="user-data">653xxxxx21 ชื่อ - สกุล<br>Firstname - Lastname</span>
+            <span id="user-data">653XXXXX21 ชื่อ - สกุล<br>Firstname - Lastname</span>
             <button class="log-out" onclick=logout()>Log out</button>
         </div>
 
         <div class="body-section">
             
             <!-- Log in pop up -->
-            <div class="popup" id="log-in">
-                
+            <div class="popup" id="log-in-popup">
                 <form class="popup-container">
-                    <h1>Login</h1>
-
-                    <label for="stid"><b>Student ID</b></label>
-                    <input type="text" placeholder="Enter Student ID" name="stid" required>
-
-                    <label for="pswd"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="pswd" required>
-
+                    <div class="info-section" id="log-in-popup-info">
+                        <h1>Login</h1>
+                        <label for="stid"><b>Student ID</b></label>
+                        <input id="student-id" type="text" placeholder="Enter Student ID" name="stid" required>
+                        <label for="pswd"><b>Password</b></label>
+                        <input id="student-password" type="password" placeholder="Enter Password" name="pswd" required>
+                    </div>
                     <div class="confirm-section">
-                        <button type="submit" class="btn">Login</button>
-                        <button class="cancel" onclick="document.getElementById('log-in').style.display = 'none'">Cancel</button>
+                        <button class="btn">Login</button>
+                        <button class="cancel" onclick="closeModal('log-in-popup')">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -42,44 +41,78 @@
             
             <!-- Semester Modal -->
             <div class="modal" id="semester-modal">
-                <form class="modal-container">
-                    <h1>Semester</h1>
-                    <button type="submit" class="option semester" id="semester2022-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/2</button>
-                    <button type="submit" class="option semester" id="semester2022-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2022/1</button>
-                    <button type="submit" class="option semester" id="semester2021-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/2</button>
-                    <button type="submit" class="option semester" id="semester2021-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2021/1</button>
-                    <br>
-                    <button type="submit" class="option semester" id="semester2020-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2020/2</button>
-                    <button type="submit" class="option semester" id="semester2020-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2020/1</button>
-                    <button type="submit" class="option semester" id="semester2019-2" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/2</button>
-                    <button type="submit" class="option semester" id="semester2019-1" onclick="document.getElementById('semester-modal').style.display = 'none'">2019/1</button>
-                    <div class="confirm-section">
-                        <button class="cancel" onclick="document.getElementById('semester-modal').style.display = 'none'">Cancel</button>
+                <div class="modal-container">
+                    <div class="info-section" id="semester-modal-info">
+                        <h1>Semester</h1>
+                        <button class="option semester" id="semester2022-2" onclick="selectSubjectFromSemester(2022, 2)">2022/2</button>
+                        <button class="option semester" id="semester2022-1" onclick="selectSubjectFromSemester(2022, 1)">2022/1</button>
+                        <button class="option semester" id="semester2021-2" onclick="selectSubjectFromSemester(2021, 2)">2021/2</button>
+                        <button class="option semester" id="semester2021-1" onclick="selectSubjectFromSemester(2021, 1)">2021/1</button>
+                        <br>
+                        <button class="option semester" id="semester2020-2" onclick="selectSubjectFromSemester(2020, 2)">2020/2</button>
+                        <button class="option semester" id="semester2020-1" onclick="selectSubjectFromSemester(2020, 1)">2020/1</button>
+                        <button class="option semester" id="semester2019-2" onclick="selectSubjectFromSemester(2019, 2)">2019/2</button>
+                        <button class="option semester" id="semester2019-1" onclick="selectSubjectFromSemester(2019, 1)">2019/1</button>
                     </div>
-                </form>
+                    <div class="confirm-section">
+                        <button class="cancel" onclick="closeModal('semester-modal')">Cancel</button>
+                    </div>
+                </div>
             </div>
             <!-- Semester Modal -->
 
+            <!-- Subject Modal -->
+            <div class="modal" id="subject-modal">
+                <div class="modal-container">
+                    <h1>Subjects</h1>
+                    <div class="info-section" id="subject-modal-info">
+                        <label><input type="checkbox"><span class="subject-check"><i></i></span></label><span class="option subject">Computer Engineering Essentials I</span><br>
+                        <label><input type="checkbox"><span class="subject-check"><i></i></span></label><span class="option subject">Computer Engineering Essentials II</span><br>
+                        <label><input type="checkbox"><span class="subject-check"><i></i></span></label><span class="option subject">Computer Engineering Essentials III</span><br>
+                        <label><input type="checkbox"><span class="subject-check"><i></i></span></label><span class="option subject">Computer Engineering Essentials IV</span><br>
+                    </div>
+                    <div class="confirm-section">
+                        <button onclick="confirmSubjects()">Confirm</button>
+                        <button class="cancel" onclick="closeModal('subject-modal')">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Subject Modal -->
+
             <!-- Sort By Modal -->
             <div class="modal" id="sort-by-modal">
-                <form class="modal-container">
+                <div class="modal-container">
                     <h1>Sort by</h1>
-                    <button type="submit" class="option sort-by" id="sort-by-name" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Name</button>
-                    <button type="submit" class="option sort-by" id="sort-by-due-date" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Due Date</button>
+                    <button class="option sort-by" id="sort-by-name" onclick="closeModal('sort-by-modal')">Name</button>
+                    <button class="option sort-by" id="sort-by-due-date" onclick="closeModal('sort-by-modal')">Due Date</button>
                     <div class="confirm-section">
-                        <button class="cancel" onclick="document.getElementById('sort-by-modal').style.display = 'none'">Cancel</button>
+                        <button class="cancel" onclick="closeModal('sort-by-modal')">Cancel</button>
                     </div>
-                </form>
+                </div>
             </div>
             <!-- Sort By Modal -->
 
+            <!-- Error Modal -->
+            <div class="modal" id="error-modal">
+                <div class="modal-container">
+                    <h1>Error</h1>
+                    <p>
+                        No course in the selected Semester
+                    </p>
+                    <div class="confirm-section">
+                        <button class="cancel" onclick="closeModal('error-modal')">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Error Modal -->
+
             <!-- Menu Bar -->
             <div class="menu-section">
-                <h1>ASSINGMENTS & SUBMISSION</h1>
+                <h1>ASSIGNMENTS & SUBMISSION</h1>
                 <img class="menu-items" id="filter-icon" src="https://cdn.icon-icons.com/icons2/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png" width="35px">
-                <button class="menu-items" id="semester-button" onclick="document.getElementById('semester-modal').style.display = 'block'">SEMESTER</button>
-                <button id="log-out" onclick="document.getElementById('sort-by-modal').style.display = 'block'">SORT BY</button>
-                <img class="menu-items" id="sort-by-icon" src="https://cdn.icon-icons.com/icons2/3629/PNG/512/sorting_left_icon_227394.png" width="35px">
+                <button class="menu-items" id="semester-button" onclick="openModal('semester-modal')">SEMESTER</button>
+                <button id="log-out" onclick="openModal('sort-by-modal')">SORT BY</button>
+                <img class="menu-items" id="sort-by-icon" src="https://cdn.icon-icons.com/icons2/3629/PNG/512/sorting_left_icon_227394.png" width="35px" onclick="toggleSort()">
             </div>
             <!-- Menu Bar -->
 
@@ -87,26 +120,33 @@
             <div>
                 <table id="assignments-table">
                     <tr class="table-head">
-                        <th class="check-col">Checked</th>
+                        <th class="check-col">Done</th>
                         <th class="assignment-col">Assignment</th>
                         <th class="subject-col">Subject</th>
                         <th class="date-col">Due Date</th>
                         <th class="time-col">Due Time</th>
                         <th>Note</th>
-                    </tr> 
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                    </tr>
                 </table>
 
                 <div class="confirm-button-container" id="confirm-changes-section">
-                    <button type="submit" class="confirm-button" id="save-changes" onclick=getSubjects_n_Semesters()>Save</button>
-                    <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                    <button type="submit" class="confirm-button" id="save-changes" onclick="getSubjectsFromSemester(2022, 2)">Save</button>
+                    <button type="submit" class="confirm-button" id="cancel-changes" onclick="createAssignmentsTable()">Cancel</button>
                 </div>
                 
             </div>
             <!-- Assignment Table -->
         </div>
-        <section class="section-center">
-            <button class="button change-page-button" onclick="window.location.href='login.html'">Go to MyCourseville API Login Page</button>
+        <section>
+            <button class="log-out" onclick=authorizeApplication()>Log in</button>
         </section>
-
     </body>
 </html>

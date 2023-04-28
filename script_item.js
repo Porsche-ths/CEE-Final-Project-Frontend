@@ -1,5 +1,5 @@
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
-const backendIPAddress = "127.0.0.1:3000";
+//const backendIPAddress = "127.0.0.1:3000";
 
 let itemsData;
 
@@ -22,8 +22,8 @@ const getItemsFromDB = async () => {
 
 // TODO #2.4: Show items in table (Sort itemsData variable based on created_date in ascending order)
 const showItemsInTable = (itemsData) => {
-  const assignmentsTable = document.getElementById("assignments-table");
-  assignmentsTable.innerHTML = "";
+  //const table_body = document.getElementById("main-table-body");
+  //table_body.innerHTML = "";
   // ----------------- FILL IN YOUR CODE UNDER THIS AREA ONLY ----------------- //
   itemsData.sort((a,b) => (a.created_date > b.created_date) ? 1 : ((b.created_date > a.created_date) ? -1 : 0))
   // ----------------- FILL IN YOUR CODE ABOVE THIS AREA ONLY ----------------- //
@@ -43,8 +43,9 @@ const showItemsInTable = (itemsData) => {
 
 // TODO #2.5: Send Add an item ("POST") request to backend server and update items in the table
 const addItem = async () => {
-  const checked = document.getElementById("assignment-done").value;
-  const note = document.getElementById("text-col").value;
+  const item = document.getElementById("item-to-add").value;
+  const name = document.getElementById("name-to-add").value;
+  const price = document.getElementById("price-to-add").value;
 
   const itemToAdd = {
     item: item,
@@ -107,11 +108,7 @@ const redrawDOM = () => {
   document.getElementById("price-to-add").value = "";
 };
 
-document.getElementById("group-no").innerHTML = getGroupNumber();
-
 document.addEventListener("DOMContentLoaded", async function (event) {
-  console.log("Showing group members.");
-  await showGroupMembers();
   console.log("Showing items from database.");
   await getItemsFromDB();
   showItemsInTable(itemsData);
