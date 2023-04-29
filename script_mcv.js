@@ -2,6 +2,12 @@
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
 const backendIPAddress = "127.0.0.1:3000";
 
+// -----------------------------------------------------------------
+
+let jsonCache = new Array;
+
+// -----------------------------------------------------------------
+
 const login_mcv = () => {
   window.location.href = `http://${backendIPAddress}/courseville/login`;
 };
@@ -9,6 +15,8 @@ const login_mcv = () => {
 const logout_mcv = async () => {
   window.location.href = `http://${backendIPAddress}/courseville/logout`;
 };
+
+// -----------------------------------------------------------------
 
 // get user's info and added it to "user-data" (loaded upon login)
 const getUserInfo = async () => {
@@ -33,6 +41,55 @@ const getUserInfo = async () => {
 
 let subjects = new Array;
 let ids = new Array;
+
+// called when user logged into a new session
+const fetchCoursesFromMCV = async () => {
+  console.log("Fetching from MCV")
+  jsonCache = [];
+
+  const options = {
+      method: "GET",
+      credentials: "include",
+  }
+
+  await fetch(`http://${backendIPAddress}/courseville/get_courses`, options)
+      .then((response) => response.json())
+      .then((data) => data.data.student)
+      .then((courses) => {
+          courses.map(course => {
+            const cv_cid = {
+              title: course.title,
+              course_no: course.course_no,
+              year: course.year,
+              semester: course.semester,
+              course_icon: course.course_icon,
+              assignments: getAssignmentsFromSubject(course.cv_cid)
+            }
+            jsonCache.push(cv_cid);
+          })
+      })
+      .catch((error) => console.error(error));
+      console.log(jsonCache)
+}
+
+const getAssignmentsFromSubject = async (cv_cid) => {
+  const allAssignments = new Array;
+  const options = {
+    method: "GET",
+    credentials: "include",
+  }
+
+  await fetch(`http://${backendIPAddress}/courseville//get_course_assignments/${cv_cid}`, options)
+  .then((response) => response.json())
+  .then((data) => data.data)
+  .then((assignments) => {
+      assignments.map(item => {
+        allAssignments.push(item);
+      })
+  })
+  .catch((error) => console.error(error));
+  return allAssignments;
+}
 
 // get number of semesters & subjects in each semester + show the button according to provided semesters in "semester-modal" (loaded upon login)
 const getSubjectsFromSemester = async (year, semester) => {

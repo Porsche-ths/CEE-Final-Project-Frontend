@@ -7,13 +7,13 @@ function closeModal(idName) { document.getElementById(`${idName}`).style.display
 
 function login() {
     closeModal(`log-out-modal`);
-    script_mcv.login_mcv();
     openModal(`log-in-popup`);
+    login_mcv();
 }
 
 function logout() {
     closeModal(`log-out-modal`);
-    script_mcv.logout_mcv();
+    logout_mcv();
     openModal(`log-in-popup`);
 }
 

@@ -89,7 +89,6 @@ const redrawDOM = () => {
 };
 
 document.addEventListener("DOMContentLoaded", async function (event) {
-  console.log("Showing items from database.");
   await getItemsFromDB();
   showItemsInTable(itemsData);
 });
