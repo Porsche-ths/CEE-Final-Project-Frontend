@@ -1,4 +1,3 @@
-/*
 function openModal(idName) {
     document.getElementById(`${idName}`).style.display = 'block';
     if (idName === 'log-in-popup') document.getElementById(`student-id`).focus();
@@ -6,6 +5,17 @@ function openModal(idName) {
 
 function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
 
+function login() {
+    closeModal(`log-out-modal`);
+    script_mcv.login_mcv();
+    openModal(`log-in-popup`);
+}
+
+function logout() {
+    closeModal(`log-out-modal`);
+    script_mcv.logout_mcv();
+    openModal(`log-in-popup`);
+}
 
 function selectSubjectFromSemester(year, semester) {
     //if (getCourses(year, semester).isEmpty()) //toggle error modal
@@ -24,5 +34,6 @@ function sortBy(criteria) {
 }
 
 function toggleSort() {
+    //for loop sort data in reverse order
     openModal(`error-modal`);
-}*/
+}

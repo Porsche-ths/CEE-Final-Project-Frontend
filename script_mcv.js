@@ -1,36 +1,13 @@
 
-function openModal(idName) {
-  document.getElementById(`${idName}`).style.display = 'block';
-  if (idName === 'log-in-popup') document.getElementById(`student-id`).focus();
-}
-
-function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
-
-
-function selectSubjectFromSemester(year, semester) {
-  //if (getCourses(year, semester).isEmpty()) /*toggle error modal*/
-  closeModal(`semester-modal`);
-  getSubjectsFromSemester(year, semester);
-  openModal(`subject-modal`);
-}
-
-function confirmSubjects() {
-  closeModal(`subject-modal`)
-  loopCreateTable();
-}
-
-function sortBy(criteria) {
-  closeModal(`sort-by-modal`);
-}
-
-function toggleSort() {
-  openModal(`error-modal`);
-}
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
 const backendIPAddress = "127.0.0.1:3000";
 
-const authorizeApplication = () => {
-  window.location.href = `http://${backendIPAddress}/courseville/auth_app`;
+const login_mcv = () => {
+  window.location.href = `http://${backendIPAddress}/courseville/login`;
+};
+
+const logout_mcv = async () => {
+  window.location.href = `http://${backendIPAddress}/courseville/logout`;
 };
 
 // get user's info and added it to "user-data" (loaded upon login)
@@ -94,6 +71,7 @@ const loopCreateTable = async () => {
           <th class="date-col">Due Date</th>
           <th class="time-col">Due Time</th>
           <th>Note</th>
+          <th class="save-col">Save</th>
       </tr>`;
     for (let i = 0; i < subjects.length; i++) {
         let isChecked = document.getElementById(`${ids[i]}`).checked;
@@ -104,7 +82,7 @@ const loopCreateTable = async () => {
     }
 }
 
-// show all assignments in semester 2022/2 (default) on load
+// show all assignments in semester/year
 const createAssignmentsTable = async (subject, cv_cid) => {
   const options = {
     method: "GET",
@@ -118,16 +96,33 @@ const createAssignmentsTable = async (subject, cv_cid) => {
           assignments.map((items) => {
               let epoch = items.duetime;
               let currentDate = new Date(epoch*1000); 
+              let localeDateStr = currentDate.toLocaleDateString("en-us", {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              })
+              let localeTimeStr = currentDate.toLocaleTimeString("en-us", {
+                hour12: true,
+                hour: "2-digit",
+                minute: "2-digit",
+              })
+              
               document.getElementById("assignments-table").innerHTML += `
                     <tr>
-                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="check-col"><label><input type="checkbox" id="checkbox_${items.itemid}"><span><i></i></span></label></td>
                         <td class="assignment-col">${items.title}</td>
                         <td class="subject-col">${subject}</td>
-                        <td class="date-col">${currentDate.toLocaleDateString()}</td>
-                        <td class="time-col">${currentDate.toLocaleTimeString()}</td>
-                        <td><textarea></textarea></td>
+                        <td class="date-col">${localeDateStr}</td>
+                        <td class="time-col">${localeTimeStr}</td>
+                        <td><textarea id="note_${items.itemid}"></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes" onclick=addToTable(${items.itemid})>Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
                     </tr>
                     `;
+                    
           })
       })
       .catch((error) => console.error(error));
@@ -136,6 +131,4 @@ const createAssignmentsTable = async (subject, cv_cid) => {
   );*/
 };
 
-const logout = async () => {
-  window.location.href = `http://${backendIPAddress}/courseville/logout`;
-};
+

@@ -55,6 +55,7 @@ th, td {
     border: 1px solid #ddd;
     padding: 8px;
 }
+td { height: 50px; }
 
 th {
     background-color: #5CB1FF;
@@ -202,6 +203,11 @@ textarea {
     text-align: center;
 }
 
+.yesno-button {
+    text-align: center;
+    width: 60px;
+}
+
 .option {
     margin: 10px;
     width: 80px;
@@ -209,7 +215,7 @@ textarea {
     text-align: center;
 }
 
-.sort-by { width: 100px; }
+.sort-by { width: 125px; }
 
 .option:hover:active { background-color: #07559C; }
 
@@ -220,11 +226,19 @@ textarea {
 
 .subject:hover:active { background: none; }
 
-.check-col, .date-col, .time-col { max-width: 30px; }
+.date-col, .time-col{ width: 100px; }
 
-.check-col { text-align: center; }
+.check-col {
+    text-align: center;
+    width: 75px;
+}
 
-.assignment-col, .subject-col { max-width: 50px; }
+.save-col {
+    text-align: center;
+    width: 175px;
+}
+
+.assignment-col, .subject-col { min-width: 50px; }
 
 .table-head { height: fit-content; }
 
@@ -247,8 +261,8 @@ textarea {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    border: 3px solid #f1f1f1;
-    padding: 10px;
+    border: 3px solid #d6d6d6;
+    padding: 20px;
     background-color: white;
 }
 
@@ -257,15 +271,7 @@ textarea {
     margin-right: 10px;
 }
 
-.confirm-button-container {
-    padding-top: 10px;
-    text-align: right;
-}
-
-.confirm-button {
-    width: 80px;
-    margin-left: 10px;
-}
+.confirm-button { width: 75px; }
 
 #user-data {
     font-size: 20px;
@@ -275,6 +281,11 @@ textarea {
 }
 
 #filter-icon { padding-right: 0; }
+
+#no {
+    background-color: red;
+    margin-left: 5px;
+}
 
 #semester-button { margin-right: auto; }
 
@@ -290,23 +301,16 @@ textarea {
     background-color: #ddd;
 }
 
-#subject-modal-info {
-    text-align: left;
-}
+#subject-modal-info { text-align: left; }
 
 #assignments-table {
     border-collapse: collapse;
     width: 100%;
 }
 
-#confirm-changes-section {
-    display: block; /* none */
-}
-
 #cancel-changes {
     background-color: red;
+    margin-left: 5px;
 }
 
-#cancel-changes:hover:active {
-    background-color: #FF9E45;
-}
+#cancel-changes:hover:active { background-color: #FF9E45; }
