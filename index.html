@@ -16,7 +16,7 @@
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
             <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
             <span id="user-data">653XXXXX21 ชื่อ - สกุล<br>Firstname - Lastname</span>
-            <button class="log-out" onclick="openModal('log-in-popup')">Log out</button>
+            <button class="log-out" onclick="openModal('log-out-modal')">Log out</button>
         </div>
 
         <div class="body-section">
@@ -38,7 +38,33 @@
                 </form>
             </div>
             <!-- Log in pop up -->
+
+            <!-- Log out Modal -->
+            <div class="popup" id="please-log-in-popup">
+                <div class="modal-container">
+                    <h1>Log in</h1>
+                    <p style="font-size: 18px;">Please log in first</p>
+                    <div class="confirm-section">
+                        <button class="yesno-button" id="yes" onclick="logout()">Yes</button>
+                        <button class="yesno-button" id="no" onclick="closeModal('log-out-modal')">No</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Log out Modal -->
             
+            <!-- Log out Modal -->
+            <div class="modal" id="log-out-modal">
+                <div class="modal-container">
+                    <h1>Log out</h1>
+                    <p style="font-size: 18px;">Are you sure you want to log out ?</p>
+                    <div class="confirm-section">
+                        <button class="yesno-button" id="yes" onclick="logout()">Yes</button>
+                        <button class="yesno-button" id="no" onclick="closeModal('log-out-modal')">No</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Log out Modal -->
+
             <!-- Semester Modal -->
             <div class="modal" id="semester-modal">
                 <div class="modal-container">
@@ -83,7 +109,8 @@
             <div class="modal" id="sort-by-modal">
                 <div class="modal-container">
                     <h1>Sort by</h1>
-                    <button class="option sort-by" id="sort-by-name" onclick="closeModal('sort-by-modal')">Name</button>
+                    <button class="option sort-by" id="sort-by-assignment" onclick="closeModal('sort-by-modal')">Assignment</button>
+                    <button class="option sort-by" id="sort-by-subject" onclick="closeModal('sort-by-modal')">Subject</button>
                     <button class="option sort-by" id="sort-by-due-date" onclick="closeModal('sort-by-modal')">Due Date</button>
                     <div class="confirm-section">
                         <button class="cancel" onclick="closeModal('sort-by-modal')">Cancel</button>
@@ -96,9 +123,7 @@
             <div class="modal" id="error-modal">
                 <div class="modal-container">
                     <h1>Error</h1>
-                    <p>
-                        No course in the selected Semester
-                    </p>
+                    <p style="font-size: 18px;">No course in the selected Semester</p>
                     <div class="confirm-section">
                         <button class="cancel" onclick="closeModal('error-modal')">Close</button>
                     </div>
@@ -126,6 +151,7 @@
                         <th class="date-col">Due Date</th>
                         <th class="time-col">Due Time</th>
                         <th>Note</th>
+                        <th class="save-col">Save</th>
                     </tr>
                     <tr>
                         <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
@@ -134,13 +160,276 @@
                         <td class="date-col">Due Date</td>
                         <td class="time-col">Due Time</td>
                         <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
+                        <td class="assignment-col">Assignment</td>
+                        <td class="subject-col">Subject</td>
+                        <td class="date-col">Due Date</td>
+                        <td class="time-col">Due Time</td>
+                        <td><textarea></textarea></td>
+                        <td class="save-col">
+                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                        </td>
                     </tr>
                 </table>
-
-                <div class="confirm-button-container" id="confirm-changes-section">
-                    <button type="submit" class="confirm-button" id="save-changes">Save</button>
-                    <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
-                </div>
                 
             </div>
             <!-- Assignment Table -->

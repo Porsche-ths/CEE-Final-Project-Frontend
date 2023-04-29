@@ -5,6 +5,11 @@ function openModal(idName) {
 
 function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
 
+function logout() {
+    closeModal(`log-out-modal`);
+    openModal(`log-in-popup`);
+}
+
 function selectSubjectFromSemester(year, semester) {
     // if (getCourses(year, semester).isEmpty()) toggle error modal
     closeModal(`semester-modal`);
@@ -20,5 +25,6 @@ function sortBy(criteria) {
 }
 
 function toggleSort() {
+    //for loop sort data in reverse order
     openModal(`error-modal`);
 }
