@@ -38,19 +38,6 @@
                 </form>
             </div>
             <!-- Log in pop up -->
-
-            <!-- Log out Modal -->
-            <div class="popup" id="please-log-in-popup">
-                <div class="modal-container">
-                    <h1>Log in</h1>
-                    <p style="font-size: 18px;">Please log in first</p>
-                    <div class="confirm-section">
-                        <button class="yesno-button" id="yes" onclick="logout()">Yes</button>
-                        <button class="yesno-button" id="no" onclick="closeModal('log-out-modal')">No</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Log out Modal -->
             
             <!-- Log out Modal -->
             <div class="modal" id="log-out-modal">
@@ -109,9 +96,9 @@
             <div class="modal" id="sort-by-modal">
                 <div class="modal-container">
                     <h1>Sort by</h1>
-                    <button class="option sort-by" id="sort-by-assignment" onclick="closeModal('sort-by-modal')">Assignment</button>
-                    <button class="option sort-by" id="sort-by-subject" onclick="closeModal('sort-by-modal')">Subject</button>
-                    <button class="option sort-by" id="sort-by-due-date" onclick="closeModal('sort-by-modal')">Due Date</button>
+                    <button class="option sort-by" id="sort-by-assignment" onclick="sortBy('Assignment')">Assignment</button>
+                    <button class="option sort-by" id="sort-by-subject" onclick="sortBy('Subject')">Subject</button>
+                    <button class="option sort-by" id="sort-by-due-date" onclick="sortBy('Date')">Due Date</button>
                     <div class="confirm-section">
                         <button class="cancel" onclick="closeModal('sort-by-modal')">Cancel</button>
                     </div>
