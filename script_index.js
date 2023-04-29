@@ -26,7 +26,6 @@ function selectSubjectFromSemester(year, semester) {
 
 function confirmSubjects() {
     closeModal(`subject-modal`)
-    //loopCreateTable();
 }
 
 function sortBy(criteria) {

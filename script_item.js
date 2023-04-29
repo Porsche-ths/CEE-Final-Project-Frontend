@@ -1,9 +1,9 @@
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
-//const backendIPAddress = "127.0.0.1:3000";
+const backendIPAddress = "127.0.0.1:3000";
 
 let tableData;
 
-const getItemsFromTable = async () => {
+const getItems = async () => {
   const options = {
     method: "GET",
     credentials: "include",
@@ -12,6 +12,7 @@ const getItemsFromTable = async () => {
     .then((response) => response.json())
     .then((data) => {
       tableData = data;
+      console.log(tableData);
     })
     .catch((error) => console.error(error));
 };
@@ -73,7 +74,6 @@ const deleteItem = async (item_id) => {
     .catch((error) => console.error(error));
 
     await getItemsFromDB();
-    showItemsInTable(itemsData);
 };
 
 const redrawDOM = () => {
@@ -90,5 +90,4 @@ const redrawDOM = () => {
 
 document.addEventListener("DOMContentLoaded", async function (event) {
   await getItemsFromDB();
-  showItemsInTable(itemsData);
 });

@@ -98,7 +98,7 @@
                         <label><input type="checkbox"><span class="subject-check"><i></i></span></label><span class="option subject">Computer Engineering Essentials IV</span><br>
                     </div>
                     <div class="confirm-section">
-                        <button onclick=createTable()>Confirm</button>     <!--onclick= "confirmSubjects()" -->
+                        <button onclick=createTable();confirmSubjects()>Confirm</button>
                         <button class="cancel" onclick="closeModal('subject-modal')">Cancel</button>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                     <h1>Sort by</h1>
                     <button class="option sort-by" id="sort-by-assignment" onclick="sortBy('Assignment')">Assignment</button>
                     <button class="option sort-by" id="sort-by-subject" onclick="sortBy('Subject')">Subject</button>
-                    <button class="option sort-by" id="sort-by-due-date" onclick="sortBy('Date')">Due Date</button>
+                    <button class="option sort-by" id="sort-by-due-date" onclick=sortByDueDate();closeModal(sort-by-modal)>Due Date</button>
                     <div class="confirm-section">
                         <button class="cancel" onclick="closeModal('sort-by-modal')">Cancel</button>
                     </div>
@@ -162,7 +162,7 @@
                         <td><textarea></textarea></td>
                         <td class="save-col">
                             <button type="submit" class="confirm-button" id="save-changes">Save</button>
-                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes" onclick=reset()>Cancel</button>
                         </td>
                     </tr>
                 </table>
@@ -171,6 +171,7 @@
         </div>
         <section>
             <button class="log-out" onclick=login()>Log in</button>
+            <button class="log-out" onclick=getItems()>Items</button>
         </section>
     </body>
 </html>

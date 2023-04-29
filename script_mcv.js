@@ -1,6 +1,6 @@
 
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
-const backendIPAddress = "127.0.0.1:3000";
+const backendIP = "127.0.0.1:3000";
 
 // --------------------------------------------------------------------------------------------------------
 
@@ -9,11 +9,11 @@ let jsonCache = new Array;
 // --------------------------------------------------------------------------------------------------------
 
 const login_mcv = () => {
-  window.location.href = `http://${backendIPAddress}/courseville/login`;
+  window.location.href = `http://${backendIP}/courseville/login`;
 };
 
 const logout_mcv = async () => {
-  window.location.href = `http://${backendIPAddress}/courseville/logout`;
+  window.location.href = `http://${backendIP}/courseville/logout`;
 };
 
 // --------------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ const getUserInfo = async () => {
     credentials: "include",
   };
   await fetch(
-    `http://${backendIPAddress}/courseville/get_user_info`,
+    `http://${backendIP}/courseville/get_user_info`,
     options
   )
     .then((response) => response.json())
@@ -50,7 +50,7 @@ const fetchCoursesFromMCV = async () => {
       credentials: "include",
   }
 
-  await fetch(`http://${backendIPAddress}/courseville/get_courses`, options)
+  await fetch(`http://${backendIP}/courseville/get_courses`, options)
       .then((response) => response.json())
       .then((data) => data.data.student)
       .then((courses) => {
@@ -80,7 +80,7 @@ const getAssignmentsFromSubject = async (cv_cid) => {
     credentials: "include",
   }
 
-  await fetch(`http://${backendIPAddress}/courseville//get_course_assignments/${cv_cid}`, options)
+  await fetch(`http://${backendIP}/courseville//get_course_assignments/${cv_cid}`, options)
   .then((response) => response.json())
   .then((data) => data.data)
   .then((assignments) => {
@@ -120,6 +120,16 @@ function createTable() {
   showInTable();
 }
 
+function reset() {
+  allIdInSemester = [];
+  selectedId = [];
+  assignmentValue = new Map();
+  assignmentKey = [];
+}
+
+// ----------------------------------------------- Sort ---------------------------------------------------
+
+
 // --------------------------------------------------------------------------------------------------------
 
 function showInTable() {
@@ -128,14 +138,20 @@ function showInTable() {
     let promise = each.assignments;
     console.log(promise)
     promise.then(
-      function(value) {show(value, each.title);},
-      function(error) {show(error, each.title);}
+      function(value) {console.log(value); cacheAssignments(value, each.title);},
+      function(error) {cacheAssignments(error, each.title);}
     )
   }
 }
 
-function show(x, title) {
+let assignmentValue = new Map();
+let assignmentKey = new Array();
+
+function cacheAssignments(x, title) {
   for (each of x) {
+      assignmentValue.set(each, title);
+      assignmentKey.push(each);
+      /*console.log(each);
       let epoch = each.duetime;
       let currentDate = new Date(epoch*1000); 
       let localeDateStr = currentDate.toLocaleDateString("en-us", {
@@ -162,6 +178,57 @@ function show(x, title) {
                             <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
                         </td>
                     </tr>
-                    `;
+                    `;*/
+  }
+  show(assignmentKey);
+}
+
+
+function sortByDueDate() {
+  console.log(assignmentKey);
+  let sortedArr = assignmentKey.sort((lhs, rhs) => (lhs.duetime < rhs.duetime) ? 1 : (lhs.duetime > rhs.duetime) ? -1 : 0);
+  show(sortedArr);
+  console.log(sortedArr);
+}
+
+function show(arr) {
+  document.getElementById("assignments-table").innerHTML = `<tr class="table-head">
+    <th class="check-col">Done</th>
+    <th class="assignment-col">Assignment</th>
+    <th class="subject-col">Subject</th>
+    <th class="date-col">Due Date</th>
+    <th class="time-col">Due Time</th>
+    <th>Note</th>
+    <th class="save-col">Save</th>
+    </tr>
+    `;
+  for (let each of assignmentKey) {
+    let epoch = each.duetime;
+    let currentDate = new Date(epoch*1000); 
+    let localeDateStr = currentDate.toLocaleDateString("en-us", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+    })
+    let localeTimeStr = currentDate.toLocaleTimeString("en-us", {
+        hour12: true,
+        hour: "2-digit",
+        minute: "2-digit",
+    })
+    document.getElementById("assignments-table").innerHTML += `
+                  <tr>
+                      <td class="check-col"><label><input type="checkbox" id="checkbox_${each.itemid}"><span><i></i></span></label></td>
+                      <td class="assignment-col">${each.title}</td>
+                      <td class="subject-col">${assignmentValue.get(each)}</td>
+                      <td class="date-col">${localeDateStr}</td>
+                      <td class="time-col">${localeTimeStr}</td>
+                      <td><textarea id="note_${each.itemid}"></textarea></td>
+                      <td class="save-col">
+                          <button type="submit" class="confirm-button" id="save-changes" onclick=addToTable(${each.itemid})>Save</button>
+                          <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
+                      </td>
+                  </tr>
+                  `;
   }
 }
