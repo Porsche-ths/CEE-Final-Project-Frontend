@@ -1,3 +1,24 @@
+function openModal(idName) {
+  document.getElementById(`${idName}`).style.display = 'block';
+  if (idName === 'log-in-popup') document.getElementById(`student-id`).focus();
+}
+
+function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
+
+function login() {
+  login_mcv();
+}
+
+function logout() {
+  closeModal(`log-out-modal`);
+  logout_mcv();
+  openModal(`log-in-popup`);
+}
+
+// --------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------
+
 
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
 const backendIP = "127.0.0.1:3000";
@@ -94,10 +115,16 @@ const getAssignmentsFromSubject = async (cv_cid) => {
 
 // --------------------------------------- Select Courses from Semester ----------------------------------------------
 
-let allIdInSemester = new Array;
+let allIdInSemester;
+let selectedId;
+let assignmentValue = new Map();
+let assignmentKey = new Array();
 
 // get number of semesters & subjects in each semester + show the button according to provided semesters in "semester-modal" (loaded upon login)
 function getSubjectsFromSemester(year, semester) {
+    allIdInSemester = [];
+    assignmentValue = new Map();
+    assignmentKey = [];
     allIdInSemester = jsonCache.filter(id => id.year == String(year) && id.semester == String(semester));
     console.log(allIdInSemester)
     document.getElementById("subject-modal-info").innerHTML = "";
@@ -108,23 +135,26 @@ function getSubjectsFromSemester(year, semester) {
     }
 }
 
+function selectSubjectFromSemester(year, semester) {
+  //if (getCourses(year, semester).isEmpty()) //toggle error modal
+  closeModal(`semester-modal`);
+  openModal(`subject-modal`);
+  getSubjectsFromSemester(year, semester);
+}
+
+function confirmSubjects() {
+  closeModal(`subject-modal`)
+}
+
 // --------------------------------------------------------------------------------------------------------
 
-let selectedId = new Array;
-
 function createTable() {
+  selectedId = [];
   for (let id of allIdInSemester) {
     let isChecked = document.getElementById(`checkbox_${id.course_no}`).checked;
     if (isChecked) {selectedId.push(id)}
   }
   showInTable();
-}
-
-function reset() {
-  allIdInSemester = [];
-  selectedId = [];
-  assignmentValue = new Map();
-  assignmentKey = [];
 }
 
 // ----------------------------------------------- Sort ---------------------------------------------------
@@ -144,55 +174,25 @@ function showInTable() {
   }
 }
 
-let assignmentValue = new Map();
-let assignmentKey = new Array();
-
 function cacheAssignments(x, title) {
   for (each of x) {
       assignmentValue.set(each, title);
       assignmentKey.push(each);
-      /*console.log(each);
-      let epoch = each.duetime;
-      let currentDate = new Date(epoch*1000); 
-      let localeDateStr = currentDate.toLocaleDateString("en-us", {
-          weekday: "short",
-          year: "numeric",
-          month: "short",
-          day: "numeric"
-      })
-      let localeTimeStr = currentDate.toLocaleTimeString("en-us", {
-          hour12: true,
-          hour: "2-digit",
-          minute: "2-digit",
-      })
-      document.getElementById("assignments-table").innerHTML += `
-                    <tr>
-                        <td class="check-col"><label><input type="checkbox" id="checkbox_${each.itemid}"><span><i></i></span></label></td>
-                        <td class="assignment-col">${each.title}</td>
-                        <td class="subject-col">${title}</td>
-                        <td class="date-col">${localeDateStr}</td>
-                        <td class="time-col">${localeTimeStr}</td>
-                        <td><textarea id="note_${each.itemid}"></textarea></td>
-                        <td class="save-col">
-                            <button type="submit" class="confirm-button" id="save-changes" onclick=addToTable(${each.itemid})>Save</button>
-                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
-                        </td>
-                    </tr>
-                    `;*/
   }
   show(assignmentKey);
 }
-
 
 function sortByDueDate() {
   console.log(assignmentKey);
   let sortedArr = assignmentKey.sort((lhs, rhs) => (lhs.duetime < rhs.duetime) ? 1 : (lhs.duetime > rhs.duetime) ? -1 : 0);
   show(sortedArr);
   console.log(sortedArr);
+  closeModal('sort-by-modal');
 }
 
 function show(arr) {
-  document.getElementById("assignments-table").innerHTML = `<tr class="table-head">
+  document.getElementById("assignments-table").innerHTML = "";
+  document.getElementById("assignments-table").innerHTML += `<tr class="table-head">
     <th class="check-col">Done</th>
     <th class="assignment-col">Assignment</th>
     <th class="subject-col">Subject</th>
@@ -218,17 +218,22 @@ function show(arr) {
     })
     document.getElementById("assignments-table").innerHTML += `
                   <tr>
-                      <td class="check-col"><label><input type="checkbox" id="checkbox_${each.itemid}"><span><i></i></span></label></td>
+                      <td class="check-col"><label><input type="checkbox" id="checkbox_${each.itemid}" onclick=updateChecked(${each.itemid})><span><i></i></span></label></td>
                       <td class="assignment-col">${each.title}</td>
                       <td class="subject-col">${assignmentValue.get(each)}</td>
                       <td class="date-col">${localeDateStr}</td>
                       <td class="time-col">${localeTimeStr}</td>
                       <td><textarea id="note_${each.itemid}"></textarea></td>
                       <td class="save-col">
-                          <button type="submit" class="confirm-button" id="save-changes" onclick=addToTable(${each.itemid})>Save</button>
+                          <button type="submit" class="confirm-button" id="save-changes" onclick=addNote(${each.itemid})>Save</button>
                           <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
                       </td>
                   </tr>
                   `;
   }
+}
+
+function toggleSort() {
+  //for loop sort data in reverse order
+  openModal(`error-modal`);
 }

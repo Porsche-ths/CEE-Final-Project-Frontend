@@ -36,14 +36,36 @@ const sortItemsInTable = (itemsData) => {
 
 // need to add save button to every assignment's row
 
-const addToTable = async (assignment_id) => {
-  console.log("add got called");
+const updateChecked = async (assignment_id) => {
+  console.log("updateChecked got called");
   const submitted = (document.getElementById(`checkbox_${assignment_id}`).checked == true) ? "SUBMITTED" : "NOT_DONE";
-  const note = document.getElementById(`note_${assignment_id}`).value;
 
   const itemToAdd = {
     assignment_id: String(assignment_id),
     submitted: submitted,
+  }
+
+  const options = {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(itemToAdd)
+  }
+
+  await fetch(`http://${backendIPAddress}/items/`, options)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((error) => console.error(error));
+};
+
+const addNote = async (assignment_id) => {
+  console.log("addNote got called");
+  const note = document.getElementById(`note_${assignment_id}`).value;
+
+  const itemToAdd = {
+    assignment_id: String(assignment_id),
     note: note,
   }
 

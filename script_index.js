@@ -1,4 +1,4 @@
-function openModal(idName) {
+/*function openModal(idName) {
     document.getElementById(`${idName}`).style.display = 'block';
     if (idName === 'log-in-popup') document.getElementById(`student-id`).focus();
 }
@@ -35,4 +35,4 @@ function sortBy(criteria) {
 function toggleSort() {
     //for loop sort data in reverse order
     openModal(`error-modal`);
-}
+}*/
