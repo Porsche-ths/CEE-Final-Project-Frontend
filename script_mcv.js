@@ -5,10 +5,6 @@ function openModal(idName) {
 
 function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
 
-function login() {
-  login_mcv();
-}
-
 function logout() {
   closeModal(`log-out-modal`);
   logout_mcv();
@@ -26,7 +22,7 @@ const backendIP = "127.0.0.1:3000";
 // --------------------------------------------- Variables --------------------------------------------------
 
 let jsonCache = new Array;
-let stu_id;
+let stu_id = null;
 let tableData;
 
 // --------------------------------------------------------------------------------------------------------
@@ -55,6 +51,7 @@ const getUserInfo = async () => {
     .then((data) => {
       console.log(data);
       stu_id = data.data.student.id;
+      checkAccess();
       console.log(stu_id);
       document.getElementById("user-data").innerHTML = `
         ${data.data.student.id} ${data.data.student.firstname_th} ${data.data.student.lastname_th} <br> ${data.data.student.firstname_en} ${data.data.student.lastname_en}
@@ -62,6 +59,16 @@ const getUserInfo = async () => {
     })
     .catch((error) => console.error(error));
 };
+
+function checkAccess() {
+  if (stu_id != null) {
+    document.getElementById('log-in-popup').style.display = 'none';
+    console.log("access granted")
+  } else {
+    console.log("access denied");
+    openModal('log-in-modal')
+  }
+}
 
 // --------------------------------- Fetching into Cache --------------------------------------
 
@@ -154,7 +161,7 @@ function getSubjectsFromSemester(year, semester) {
               <label><input type="checkbox" id="checkbox_${id.course_no}"><span class="subject-check"><i></i></span></label><span class="option subject" id=${id.course_no}>${id.title}</span><br>
               `
     }
-    if (allIdInSemester.length == 0) {toggleError(); closeModal(`subject-modal`);}
+    if (allIdInSemester.length == 0) {toggleError(`error-modal`); closeModal(`subject-modal`);}
 }
 
 function selectSubjectFromSemester(year, semester) {
@@ -318,10 +325,12 @@ function show(arr) {
         if (currentData.submitted == "SUBMITTED") {document.getElementById(`checkbox_${current_id}`).setAttribute("checked", true);}
         if (currentData.note != undefined) {document.getElementById(`note_${current_id}`).innerHTML = currentData.note;}
     }
+    // ------ id ------
   }
+  if (arr.length == 0) {toggleError(`error-no-as-modal`);}
 }
 
-function toggleError() {
-  //for loop sort data in reverse order
-  openModal(`error-modal`);
+function toggleError(errorT) {
+  console.log("toggleError was called")
+  openModal(`${errorT}`);
 }

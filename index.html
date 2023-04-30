@@ -23,15 +23,16 @@
             
             <!-- Log in pop up -->
             <div class="popup" id="log-in-popup">
-                <form class="popup-container">
+                <div class="popup-container">
                     <div class="info-section" id="log-in-popup-info">
                         <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
                         <h1>Login</h1>
                         <p>Please login with your myCourseVille account</p>
                     </div>
                     <div class="confirm-section">
+                        <button class="btn" onclick="closeModal('log-in-popup');login_mcv()">Go to Login page</button>
                     </div>
-                </form>
+                </div>
             </div>
             <!-- Log in pop up -->
 
@@ -103,7 +104,7 @@
             </div>
             <!-- Sort By Modal -->
 
-            <!-- Error Modal -->
+            <!-- Error No Course Modal -->
             <div class="modal" id="error-modal">
                 <div class="modal-container">
                     <h1>Error</h1>
@@ -113,7 +114,19 @@
                     </div>
                 </div>
             </div>
-            <!-- Error Modal -->
+            <!-- Error No Course Modal -->
+
+            <!-- Error No Assignment Modal -->
+            <div class="modal" id="error-no-as-modal">
+                <div class="modal-container">
+                    <h1>Luck's on your side!</h1>
+                    <p style="font-size: 18px;">No assignment in the selected Course</p>
+                    <div class="confirm-section">
+                        <button class="cancel" onclick="closeModal('error-no-as-modal')">Close</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Error No Assignment Modal -->
 
             <!-- Menu Bar -->
             <div class="menu-section">
@@ -146,15 +159,12 @@
                         <td><textarea></textarea></td>
                         <td class="save-col">
                             <button type="submit" class="confirm-button" id="save-changes">Save</button>
-                            <button type="submit" class="confirm-button" id="cancel-changes" onclick=reset()>Cancel</button>
+                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
                         </td>
                     </tr>
                 </table>
             </div>
             <!-- Assignment Table -->
         </div>
-        <section>
-            <button class="log-out" onclick=login()>Log in</button>
-        </section>
     </body>
 </html>

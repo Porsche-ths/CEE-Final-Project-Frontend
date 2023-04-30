@@ -81,8 +81,6 @@ const deleteItem = async (item_id) => {
     .then((response) => {
     })
     .catch((error) => console.error(error));
-
-    await getItemsFromDB();
 };
 
 const redrawDOM = () => {
@@ -92,11 +90,4 @@ const redrawDOM = () => {
       cancelable: true,
     })
   );
-  /*document.getElementById("item-to-add").value = "";
-  document.getElementById("name-to-add").value = "0";
-  document.getElementById("price-to-add").value = "";*/
 };
-
-document.addEventListener("DOMContentLoaded", async function (event) {
-  await getItemsFromDB();
-});
