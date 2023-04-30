@@ -23,9 +23,11 @@ function logout() {
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
 const backendIP = "127.0.0.1:3000";
 
-// --------------------------------------------------------------------------------------------------------
+// --------------------------------------------- Variables --------------------------------------------------
 
 let jsonCache = new Array;
+let stu_id;
+let tableData;
 
 // --------------------------------------------------------------------------------------------------------
 
@@ -52,6 +54,8 @@ const getUserInfo = async () => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      stu_id = data.data.student.id;
+      console.log(stu_id);
       document.getElementById("user-data").innerHTML = `
         ${data.data.student.id} ${data.data.student.firstname_th} ${data.data.student.lastname_th} <br> ${data.data.student.firstname_en} ${data.data.student.lastname_en}
       `;
@@ -91,6 +95,23 @@ const fetchCoursesFromMCV = async () => {
       .catch((error) => console.error(error));
       console.log(jsonCache)
 }
+
+const getItems = async () => {
+  const options = {
+    method: "GET",
+    credentials: "include",
+  };
+  await fetch(`http://${backendIPAddress}/items/`, options)
+    .then((response) => response.json())
+    .then((data) => {
+      tableData = data;
+      console.log(Array.isArray(tableData));
+      tableData = tableData.filter(item => item.student_id == stu_id);
+      console.log(Array.isArray(tableData));
+      console.log(tableData);
+    })
+    .catch((error) => console.error(error));
+};
 
 // --------------------------------------------------------------------------------------------------------
 
@@ -157,11 +178,6 @@ function createTable() {
   showInTable();
 }
 
-// ----------------------------------------------- Sort ---------------------------------------------------
-
-
-// --------------------------------------------------------------------------------------------------------
-
 function showInTable() {
   for (let each of selectedId) {
     console.log(each.title)
@@ -179,16 +195,74 @@ function cacheAssignments(x, title) {
       assignmentValue.set(each, title);
       assignmentKey.push(each);
   }
+  console.log("key")
+  console.log(assignmentKey)
+  console.log("pair")
+  console.log(assignmentValue)
   show(assignmentKey);
 }
 
+// --------------------------------------------------------------------------------------------------------
+// *********************************************** Sort ***************************************************
+
+let sortedArr = new Array;
+
+// --------------------------------------------------------------------------------------------------------
+
 function sortByDueDate() {
   console.log(assignmentKey);
-  let sortedArr = assignmentKey.sort((lhs, rhs) => (lhs.duetime < rhs.duetime) ? 1 : (lhs.duetime > rhs.duetime) ? -1 : 0);
+  sortedArr = assignmentKey.sort((lhs, rhs) => (lhs.duetime < rhs.duetime) ? 1 : (lhs.duetime > rhs.duetime) ? -1 : 0);
   show(sortedArr);
   console.log(sortedArr);
   closeModal('sort-by-modal');
 }
+
+// --------------------------------------------------------------------------------------------------------
+
+function sortByDone() {
+  console.log(assignmentKey);
+  let doneData = new Array;
+  doneData = tableData.filter(d => d.submitted == "SUBMITTED");
+  console.log(doneData);
+  sortedArr = assignmentKey.sort((lhs, rhs) => 
+  (doneData.find(d => d.assignment_id == lhs.itemid) != undefined && doneData.find(d => d.assignment_id == rhs.itemid) == undefined) ? 1 : 
+  (doneData.find(d => d.assignment_id == lhs.itemid) == undefined && doneData.find(d => d.assignment_id == rhs.itemid) != undefined) ? -1 : 
+  0);
+  show(sortedArr);
+  console.log(sortedArr);
+  closeModal('sort-by-modal');
+}
+
+// --------------------------------------------------------------------------------------------------------
+
+function sortBySubject() {
+  console.log(assignmentKey);
+  sortedArr = assignmentKey.sort((lhs, rhs) => (assignmentValue.get(lhs) < assignmentValue.get(rhs)) ? 1 : (assignmentValue.get(lhs) > assignmentValue.get(rhs)) ? -1 : 0);
+  show(sortedArr);
+  console.log(sortedArr);
+  closeModal('sort-by-modal');
+}
+
+// --------------------------------------------------------------------------------------------------------
+
+function sortByAssignment() {
+  console.log(assignmentKey);
+  sortedArr = assignmentKey.sort((lhs, rhs) => (lhs.title < rhs.title) ? 1 : (lhs.title > rhs.title) ? -1 : 0);
+  show(sortedArr);
+  console.log(sortedArr);
+  closeModal('sort-by-modal');
+}
+
+// --------------------------------------------------------------------------------------------------------
+
+function toggleSort() {
+  sortedArr = sortedArr.reverse();
+  console.log("reversing");
+  show(sortedArr);
+}
+
+// --------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------
 
 function show(arr) {
   document.getElementById("assignments-table").innerHTML = "";
@@ -203,6 +277,7 @@ function show(arr) {
     </tr>
     `;
   for (let each of assignmentKey) {
+    // ----- time -----
     let epoch = each.duetime;
     let currentDate = new Date(epoch*1000); 
     let localeDateStr = currentDate.toLocaleDateString("en-us", {
@@ -216,24 +291,35 @@ function show(arr) {
         hour: "2-digit",
         minute: "2-digit",
     })
+    // ----- time -----
+    // ------ id ------
+    let current_id = each.itemid;
     document.getElementById("assignments-table").innerHTML += `
                   <tr>
-                      <td class="check-col"><label><input type="checkbox" id="checkbox_${each.itemid}" onclick=updateChecked(${each.itemid})><span><i></i></span></label></td>
+                      <td class="check-col"><label><input type="checkbox" id="checkbox_${current_id}" onclick="updateChecked(${stu_id}, ${current_id});getItems()"><span><i></i></span></label></td>
                       <td class="assignment-col">${each.title}</td>
                       <td class="subject-col">${assignmentValue.get(each)}</td>
                       <td class="date-col">${localeDateStr}</td>
                       <td class="time-col">${localeTimeStr}</td>
-                      <td><textarea id="note_${each.itemid}"></textarea></td>
+                      <td><textarea id="note_${current_id}"></textarea></td>
                       <td class="save-col">
-                          <button type="submit" class="confirm-button" id="save-changes" onclick=addNote(${each.itemid})>Save</button>
+                          <button type="submit" class="confirm-button" id="save-changes" onclick="addNote(${stu_id}, ${current_id});getItems()">Save</button>
                           <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
                       </td>
                   </tr>
                   `;
+    //console.log("checking");
+    //console.log(tableData.find(data => data.assignment == String(current_id)))
+    let currentData = new Array;
+    currentData = tableData.find(d => d.assignment_id == String(current_id));
+    if (currentData != undefined) {
+        if (currentData.submitted == "SUBMITTED") {document.getElementById(`checkbox_${current_id}`).setAttribute("checked", true);}
+        if (currentData.note != undefined) {document.getElementById(`note_${current_id}`).innerHTML = currentData.note;}
+    }
   }
 }
 
-function toggleSort() {
+function toggleError() {
   //for loop sort data in reverse order
   openModal(`error-modal`);
 }

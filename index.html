@@ -11,7 +11,7 @@
         <script src="script_item.js" defer></script>
         <script src="script_mcv.js" defer></script>
     </head>
-    <body onload=getUserInfo();fetchCoursesFromMCV();>
+    <body onload=getUserInfo();fetchCoursesFromMCV();getItems()>
         <div class="head-section">
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
             <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
@@ -25,38 +25,21 @@
             <div class="popup" id="log-in-popup">
                 <form class="popup-container">
                     <div class="info-section" id="log-in-popup-info">
+                        <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
                         <h1>Login</h1>
-                        <label for="stid"><b>Student ID</b></label>
-                        <input id="student-id" type="text" placeholder="Enter Student ID" name="stid" required>
-                        <label for="pswd"><b>Password</b></label>
-                        <input id="student-password" type="password" placeholder="Enter Password" name="pswd" required>
+                        <p>Please login with your myCourseVille account</p>
                     </div>
                     <div class="confirm-section">
-                        <button class="btn">Login</button>
-                        <button class="cancel" onclick="closeModal('log-in-popup')">Cancel</button>
                     </div>
                 </form>
             </div>
             <!-- Log in pop up -->
 
             <!-- Log out Modal -->
-            <div class="popup" id="please-log-in-popup">
-                <div class="modal-container">
-                    <h1>Log in</h1>
-                    <p style="font-size: 18px;">Please log in first</p>
-                    <div class="confirm-section">
-                        <button class="yesno-button" id="yes" onclick="logout_mcv()">Yes</button>
-                        <button class="yesno-button" id="no" onclick="closeModal('log-out-modal')">No</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Log out Modal -->
-
-            <!-- Log out Modal -->
             <div class="modal" id="log-out-modal">
                 <div class="modal-container">
                     <h1>Log out</h1>
-                    <p style="font-size: 18px;">Are you sure you want to log out ?</p>
+                    <p>Are you sure you want to log out ?</p>
                     <div class="confirm-section">
                         <button class="yesno-button" id="yes" onclick="logout()">Yes</button>
                         <button class="yesno-button" id="no" onclick="closeModal('log-out-modal')">No</button>
@@ -109,8 +92,9 @@
             <div class="modal" id="sort-by-modal">
                 <div class="modal-container">
                     <h1>Sort by</h1>
-                    <button class="option sort-by" id="sort-by-assignment" onclick=sortBy(1)>Assignment</button>
-                    <button class="option sort-by" id="sort-by-subject" onclick=sortBy(2)>Subject</button>
+                    <button class="option sort-by" id="sort-by-assignment" onclick=sortByAssignment()>Assignment</button>
+                    <button class="option sort-by" id="sort-by-done" onclick="sortByDone()">Done</button>
+                    <button class="option sort-by" id="sort-by-subject" onclick=sortBySubject()>Subject</button>
                     <button class="option sort-by" id="sort-by-due-date" onclick=sortByDueDate()>Due Date</button>
                     <div class="confirm-section">
                         <button class="cancel" onclick="closeModal('sort-by-modal')">Cancel</button>
@@ -171,7 +155,6 @@
         </div>
         <section>
             <button class="log-out" onclick=login()>Log in</button>
-            <button class="log-out" onclick=getItems()>Items</button>
         </section>
     </body>
 </html>
