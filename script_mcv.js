@@ -154,6 +154,7 @@ function getSubjectsFromSemester(year, semester) {
               <label><input type="checkbox" id="checkbox_${id.course_no}"><span class="subject-check"><i></i></span></label><span class="option subject" id=${id.course_no}>${id.title}</span><br>
               `
     }
+    if (allIdInSemester.length == 0) {toggleError(); closeModal(`subject-modal`);}
 }
 
 function selectSubjectFromSemester(year, semester) {
