@@ -200,6 +200,7 @@ function cacheAssignments(x, title) {
   console.log(assignmentKey)
   console.log("pair")
   console.log(assignmentValue)
+  sortedArr = assignmentKey;
   show(assignmentKey);
 }
 
