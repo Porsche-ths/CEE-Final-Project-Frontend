@@ -23,7 +23,7 @@ function logout() {
 
 
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
-const backendIP = "127.0.0.1:3000"//"52.4.37.139:3000";
+const backendIP = "52.4.37.139:3000";
 
 // --------------------------------------------- Variables --------------------------------------------------
 
