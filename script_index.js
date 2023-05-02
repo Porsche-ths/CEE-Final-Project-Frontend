@@ -5,6 +5,11 @@ function openModal(idName) {
 
 function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
 
+function logintomcv() {
+    closeModal('log-in-popup');
+    openModal('loading-modal');
+}
+
 function logout() {
     closeModal(`log-out-modal`);
     openModal(`log-in-popup`);
