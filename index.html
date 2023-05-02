@@ -11,7 +11,7 @@
         <script src="script_item.js" defer></script>
         <script src="script_mcv.js" defer></script>
     </head>
-    <body onload=getUserInfo();fetchCoursesFromMCV();getItems()>
+    <body onload=getUserInfo();getItems()>
         
         <div class="head-section">
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png">
@@ -40,8 +40,21 @@
             </div>
             <!-- Log in pop up --> 
 
+            <!-- Loading Token Modal -->
+            <div class="modal" id="loading-token-modal">
+                <div class="modal-container">
+                    <h1>Loading . . .</h1>
+                    <p>We are checking your information</p>
+                    <p>Please wait :)</p>
+                    <!-- <div class="confirm-section">
+                        <button class="btn" onclick="closeModal('loading-modal')">close</button>
+                    </div> -->
+                </div>
+            </div>
             <!-- Loading Modal -->
-            <div class="modal" id="loading-modal">
+
+            <!-- Loading Assignment Modal -->
+            <div class="modal" id="loading-assignment-modal">
                 <div class="modal-container">
                     <h1>Loading . . .</h1>
                     <p>We are loading your assignments</p>

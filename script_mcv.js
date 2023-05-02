@@ -23,7 +23,7 @@ function logout() {
 
 
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
-const backendIP = "52.4.37.139:3000";
+const backendIP = /*"127.0.0.1:3000"*/"52.4.37.139:3000";
 
 // --------------------------------------------- Variables --------------------------------------------------
 
@@ -77,12 +77,14 @@ const getUserInfo = async () => {
 }, 3000)*/
 
 setTimeout(() => {
-  document.getElementById("loading-modal").style.display = 'none';
+  document.getElementById("loading-token-modal").style.display = 'none';
   if (stu_id == null) {
     console.log("access denied");
     document.getElementById("log-in-popup").style.display = 'block';
   } else {
     console.log("access granted")
+    document.getElementById("loading-assignment-modal").style.display = 'block';
+    fetchCoursesFromMCV();
   }
 }, 5000);
 
@@ -117,6 +119,8 @@ const fetchCoursesFromMCV = async () => {
       })
       .catch((error) => console.error(error));
       console.log(jsonCache)
+  document.getElementById("loading-assignment-modal").style.display = 'none';
+  getItems();
 }
 
 const getItems = async () => {
@@ -352,6 +356,10 @@ function toggleError(errorT) {
 }
 
 document.addEventListener("DOMContentLoaded", async function (event) {
+  console.log("Trying to load items");
+  await getItems();
+});
+document.addEventListener("click", async function (event) {
   console.log("Trying to load items");
   await getItems();
 });

@@ -317,6 +317,10 @@ textarea {
 
 #cancel-changes:hover:active { background-color: #FF9E45; }
 
-#loading-modal {
+#loading-token-modal {
     display: block;
+}
+
+#loading-assignment-modal {
+    display: none;
 }
