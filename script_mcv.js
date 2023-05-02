@@ -23,7 +23,7 @@ function logout() {
 
 
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
-const backendIP = /*"127.0.0.1:3000"*/"52.4.37.139:3000";
+const backendIP = "127.0.0.1:3000"//"52.4.37.139:3000";
 
 // --------------------------------------------- Variables --------------------------------------------------
 
@@ -61,6 +61,13 @@ const getUserInfo = async () => {
       document.getElementById("user-data").innerHTML = `
         ${data.data.student.id} ${data.data.student.firstname_th} ${data.data.student.lastname_th} <br> ${data.data.student.firstname_en} ${data.data.student.lastname_en}
       `;
+      document.getElementById("loading-token-modal").innerHTML = `<div class="modal-container">
+        <h1>You are good to go!</h1>
+        <p>Press Enter to get in</p>
+        <!-- <div class="confirm-section">
+            <button class="btn" onclick="closeModal('loading-token-modal')">Enter</button>
+        </div> -->
+      </div>`;
     })
     .catch((error) => console.error(error));
 };
@@ -86,7 +93,7 @@ setTimeout(() => {
     document.getElementById("loading-assignment-modal").style.display = 'block';
     fetchCoursesFromMCV();
   }
-}, 5000);
+}, 30000);
 
 // --------------------------------- Fetching into Cache --------------------------------------
 

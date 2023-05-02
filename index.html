@@ -11,7 +11,7 @@
         <script src="script_item.js" defer></script>
         <script src="script_mcv.js" defer></script>
     </head>
-    <body onload=getUserInfo();getItems()>
+    <body onload=getUserInfo();checkAccess();getItems()>
         
         <div class="head-section">
             <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png">
@@ -46,6 +46,10 @@
                     <h1>Loading . . .</h1>
                     <p>We are checking your information</p>
                     <p>Please wait :)</p>
+                    <p>If you haven't logged in yet, please click</p>
+                    <div class="confirm-section">
+                        <button class="btn" onclick="closeModal('log-in-popup');login_mcv()">Go to Login page</button>
+                    </div>
                     <!-- <div class="confirm-section">
                         <button class="btn" onclick="closeModal('loading-modal')">close</button>
                     </div> -->
