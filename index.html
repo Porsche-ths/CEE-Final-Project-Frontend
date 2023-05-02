@@ -29,7 +29,7 @@
                         <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
                         <h1>Login</h1>
                         <p>
-                            Welcome to our webpage! <br>
+                            Welcome to our webpage!<br>
                             Please login with your myCourseVille account
                         </p>
                     </div>
@@ -43,16 +43,16 @@
             <!-- Loading Token Modal -->
             <div class="modal" id="loading-token-modal">
                 <div class="modal-container">
-                    <h1>Loading . . .</h1>
-                    <p>We are checking your information</p>
-                    <p>Please wait :)</p>
+                    <h1>Loading...</h1>
+                    <p>
+                        We are checking your information<br>
+                        It might take some time<br>
+                        Please wait :)
+                    </p>
                     <p>If you haven't logged in yet, please click</p>
                     <div class="confirm-section">
                         <button class="btn" onclick="closeModal('log-in-popup');login_mcv()">Go to Login page</button>
                     </div>
-                    <!-- <div class="confirm-section">
-                        <button class="btn" onclick="closeModal('loading-modal')">close</button>
-                    </div> -->
                 </div>
             </div>
             <!-- Loading Modal -->
@@ -60,12 +60,11 @@
             <!-- Loading Assignment Modal -->
             <div class="modal" id="loading-assignment-modal">
                 <div class="modal-container">
-                    <h1>Loading . . .</h1>
-                    <p>We are loading your assignments</p>
-                    <p>Please wait :)</p>
-                    <!-- <div class="confirm-section">
-                        <button class="btn" onclick="closeModal('loading-modal')">close</button>
-                    </div> -->
+                    <h1>Loading...</h1>
+                    <p>
+                        We are loading your assignments<br>
+                        Please wait :)
+                    </p>
                 </div>
             </div>
             <!-- Loading Modal -->
@@ -142,7 +141,7 @@
             <div class="modal" id="error-modal">
                 <div class="modal-container">
                     <h1>Error</h1>
-                    <p style="font-size: 18px;">No course in the selected Semester</p>
+                    <p>No course in the selected Semester</p>
                     <div class="confirm-section">
                         <button class="cancel" onclick="closeModal('error-modal')">Close</button>
                     </div>
@@ -154,7 +153,7 @@
             <div class="modal" id="error-no-as-modal">
                 <div class="modal-container">
                     <h1>Luck's on your side!</h1>
-                    <p style="font-size: 18px;">No assignment in the selected Course</p>
+                    <p>No assignment in the selected Course</p>
                     <div class="confirm-section">
                         <button class="cancel" onclick="closeModal('error-no-as-modal')">Close</button>
                     </div>
@@ -183,18 +182,6 @@
                         <th class="time-col">Due Time</th>
                         <th>Note</th>
                         <th class="save-col">Save</th>
-                    </tr>
-                    <tr>
-                        <td class="check-col"><label><input type="checkbox"><span><i></i></span></label></td>
-                        <td class="assignment-col">Assignment</td>
-                        <td class="subject-col">Subject</td>
-                        <td class="date-col">Due Date</td>
-                        <td class="time-col">Due Time</td>
-                        <td><textarea></textarea></td>
-                        <td class="save-col">
-                            <button type="submit" class="confirm-button" id="save-changes">Save</button>
-                            <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
-                        </td>
                     </tr>
                 </table>
             </div>

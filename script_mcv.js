@@ -344,7 +344,6 @@ function show(arr) {
                       <td><textarea id="note_${current_id}"></textarea></td>
                       <td class="save-col">
                           <button type="submit" class="confirm-button" id="save-changes" onclick="addNote(${stu_id}, ${current_id})">Save</button>
-                          <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
                       </td>
                   </tr>
                   `;
