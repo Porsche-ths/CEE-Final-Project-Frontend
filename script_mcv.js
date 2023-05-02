@@ -61,6 +61,10 @@ const getUserInfo = async () => {
       document.getElementById("user-data").innerHTML = `
         ${data.data.student.id} ${data.data.student.firstname_th} ${data.data.student.lastname_th} <br> ${data.data.student.firstname_en} ${data.data.student.lastname_en}
       `;
+      document.getElementById("loading-token-modal").style.display = 'none';
+      console.log("access granted")
+      document.getElementById("loading-assignment-modal").style.display = 'block';
+      fetchCoursesFromMCV();
       document.getElementById("loading-token-modal").innerHTML = `<div class="modal-container">
         <h1>You are good to go!</h1>
         <p>Press Enter to get in</p>
@@ -83,7 +87,7 @@ const getUserInfo = async () => {
   }
 }, 3000)*/
 
-setTimeout(() => {
+/*setTimeout(() => {
   document.getElementById("loading-token-modal").style.display = 'none';
   if (stu_id == null) {
     console.log("access denied");
@@ -93,7 +97,7 @@ setTimeout(() => {
     document.getElementById("loading-assignment-modal").style.display = 'block';
     fetchCoursesFromMCV();
   }
-}, 30000);
+}, 30000);*/
 
 // --------------------------------- Fetching into Cache --------------------------------------
 
