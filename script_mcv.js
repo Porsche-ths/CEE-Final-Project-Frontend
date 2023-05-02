@@ -5,10 +5,16 @@ function openModal(idName) {
 
 function closeModal(idName) { document.getElementById(`${idName}`).style.display = 'none'; }
 
+function login() {
+  closeModal('log-in-popup');
+  openModal('loading-modal');
+  login_mcv();
+}
+
 function logout() {
   closeModal(`log-out-modal`);
-  logout_mcv();
   openModal(`log-in-popup`);
+  logout_mcv();
 }
 
 // --------------------------------------------------------------------------------------------------------
