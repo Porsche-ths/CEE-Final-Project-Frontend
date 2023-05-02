@@ -127,7 +127,7 @@ textarea {
 .log-out { font-size: 20px; }
 
 .popup {
-    display: block;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -139,6 +139,7 @@ textarea {
 
 .popup-container {
     width: 400px;
+    min-width: 500px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -260,11 +261,26 @@ textarea {
 
 .confirm-button { width: 75px; }
 
+#mcv-logo {
+    max-width: 250px;
+    min-width: 250px;
+    max-height: 50px;
+    min-height: 50px;
+}
+
+#user-profile {
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 50px;
+    min-height: 50px;
+}
+
 #user-data {
     font-size: 20px;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+    min-width: 200px;
 }
 
 #filter-icon { padding-right: 0; }
@@ -301,3 +317,7 @@ textarea {
 }
 
 #cancel-changes:hover:active { background-color: #FF9E45; }
+
+#loading-modal {
+    display: block;
+}

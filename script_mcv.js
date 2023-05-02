@@ -23,7 +23,7 @@ function logout() {
 
 
 // Change this IP address to EC2 instance public IP address when you are going to deploy this web application
-const backendIP = "52.4.37.139:3000";
+const backendIP = "127.0.0.1:3000";//"52.4.37.139:3000";
 
 // --------------------------------------------- Variables --------------------------------------------------
 
@@ -56,8 +56,7 @@ const getUserInfo = async () => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      stu_id = data.data.student.id;
-      checkAccess();
+      stu_id = data.data.student.id; 
       console.log(stu_id);
       document.getElementById("user-data").innerHTML = `
         ${data.data.student.id} ${data.data.student.firstname_th} ${data.data.student.lastname_th} <br> ${data.data.student.firstname_en} ${data.data.student.lastname_en}
@@ -66,15 +65,26 @@ const getUserInfo = async () => {
     .catch((error) => console.error(error));
 };
 
-function checkAccess() {
+/*setTimeout(function checkAccess() {
   if (stu_id != null) {
     document.getElementById('log-in-popup').style.display = 'none';
     console.log("access granted")
   } else {
     console.log("access denied");
-    openModal('log-in-modal')
+    document.getElementById("loading-modal").style.display = 'none';
+    document.getElementById("log-in-popup").style.display = 'block';
   }
-}
+}, 3000)*/
+
+setTimeout(() => {
+  document.getElementById("loading-modal").style.display = 'none';
+  if (stu_id == null) {
+    console.log("access denied");
+    document.getElementById("log-in-popup").style.display = 'block';
+  } else {
+    console.log("access granted")
+  }
+}, 5000);
 
 // --------------------------------- Fetching into Cache --------------------------------------
 
@@ -311,14 +321,14 @@ function show(arr) {
     let current_id = each.itemid;
     document.getElementById("assignments-table").innerHTML += `
                   <tr>
-                      <td class="check-col"><label><input type="checkbox" id="checkbox_${current_id}" onclick="updateChecked(${stu_id}, ${current_id});getItems()"><span><i></i></span></label></td>
+                      <td class="check-col"><label><input type="checkbox" id="checkbox_${current_id}" onclick="updateChecked(${stu_id}, ${current_id})"><span><i></i></span></label></td>
                       <td class="assignment-col">${each.title}</td>
                       <td class="subject-col">${assignmentValue.get(each)}</td>
                       <td class="date-col">${localeDateStr}</td>
                       <td class="time-col">${localeTimeStr}</td>
                       <td><textarea id="note_${current_id}"></textarea></td>
                       <td class="save-col">
-                          <button type="submit" class="confirm-button" id="save-changes" onclick="addNote(${stu_id}, ${current_id});getItems()">Save</button>
+                          <button type="submit" class="confirm-button" id="save-changes" onclick="addNote(${stu_id}, ${current_id})">Save</button>
                           <button type="submit" class="confirm-button" id="cancel-changes">Cancel</button>
                       </td>
                   </tr>
@@ -340,3 +350,14 @@ function toggleError(errorT) {
   console.log("toggleError was called")
   openModal(`${errorT}`);
 }
+
+document.addEventListener("DOMContentLoaded", async function (event) {
+  console.log("Trying to load items");
+  await getItems();
+});
+
+/*let checkbox = document.querySelector("input[type=checkbox]");
+
+checkbox.addEventListener('change', function() {
+  console.log("checked!")
+});*/

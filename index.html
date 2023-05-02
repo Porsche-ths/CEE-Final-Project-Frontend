@@ -12,9 +12,10 @@
         <script src="script_mcv.js" defer></script>
     </head>
     <body onload=getUserInfo();fetchCoursesFromMCV();getItems()>
+        
         <div class="head-section">
-            <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
-            <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" width="50px">
+            <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png">
+            <img id="user-profile" src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png">
             <span id="user-data">653XXXXX21 ชื่อ - สกุล<br>Firstname - Lastname</span>
             <button class="log-out" onclick="openModal('log-out-modal')">Log out</button>
         </div>
@@ -27,14 +28,17 @@
                     <div class="info-section" id="log-in-popup-info">
                         <img id="mcv-logo" src="https://www.mycourseville.com/sites/all/modules/courseville/files/logo/cv-logo.png" width="250px">
                         <h1>Login</h1>
-                        <p>Please login with your myCourseVille account</p>
+                        <p>
+                            Welcome to our webpage! <br>
+                            Please login with your myCourseVille account
+                        </p>
                     </div>
                     <div class="confirm-section">
                         <button class="btn" onclick="closeModal('log-in-popup');login_mcv()">Go to Login page</button>
                     </div>
                 </div>
             </div>
-            <!-- Log in pop up -->
+            <!-- Log in pop up --> 
 
             <!-- Loading Modal -->
             <div class="modal" id="loading-modal">
@@ -42,9 +46,9 @@
                     <h1>Loading . . .</h1>
                     <p>We are loading your assignments</p>
                     <p>Please wait :)</p>
-                    <div class="confirm-section">
+                    <!-- <div class="confirm-section">
                         <button class="btn" onclick="closeModal('loading-modal')">close</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- Loading Modal -->
