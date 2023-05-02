@@ -64,9 +64,9 @@ const getUserInfo = async () => {
       document.getElementById("loading-token-modal").innerHTML = `<div class="modal-container">
         <h1>You are good to go!</h1>
         <p>Press Enter to get in</p>
-        <!-- <div class="confirm-section">
+        <div class="confirm-section">
             <button class="btn" onclick="closeModal('loading-token-modal')">Enter</button>
-        </div> -->
+        </div>
       </div>`;
     })
     .catch((error) => console.error(error));
